@@ -1,13 +1,6 @@
-// import React from 'react';
-// import ReactDOM from 'react-dom';
-// import './index.css';
-// import App from './App';
-// import registerServiceWorker from './registerServiceWorker';
-
-// ReactDOM.render(<App />, document.getElementById('root'));
-// registerServiceWorker();
-
+//Importing the essential dependencies!  
 window.jQuery = window.$ =  require("jquery");
+
 // window.moment = require('moment');
 // window._ = require('lodash');
 
