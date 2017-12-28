@@ -1,15 +1,13 @@
-export default {
-  path: 'dashboard',
-  component: require('../../components/common/Layout').default,
-  childRoutes: [
-    {
-      path: 'dashboard',
-      getComponent(nextState, cb){
-        import('./containers/Dashboard').then((m)=> {
-          cb(null, m.default)
-        })
-      }
-    }
-  ]
+//import React from 'react';
+//import { Route, Switch } from 'react-router-dom';
+//import PrivateRoute from '../PrivateRoute';
+import Dashboard from './containers/Dashboard';
+//import Layout from '../../components/common/Layout';
 
-};
+export default {
+	path: '/dashboard',
+	component: Dashboard,
+	layout_name: 'layout'
+}
+
+ 
