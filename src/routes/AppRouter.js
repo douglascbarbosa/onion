@@ -9,10 +9,12 @@ import Layout from '../components/common/Layout';
 import PrivateRoute from './PrivateRoute';
 import PublicRoute from './PublicRoute';
 
+import routes from './';
 
-export const routes = [
-	require('./dashboard').default,
-];
+
+// export const routes = [
+// 	require('./dashboard').default,
+// ];
 
 const layouts = [];
 layouts['layout'] = Layout;
@@ -21,7 +23,7 @@ export const history = createBrowserHistory();
 
 const components = routes.map((component) => {
   return <PrivateRoute key={component.path} layout_type={layouts[component.layout_name]} path={component.path} component={component.component} /> 
-})
+});
 
 const AppRouter = () => (
   <Router history={history}>

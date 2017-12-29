@@ -162,6 +162,7 @@ export default class NavMenu extends React.Component {
 
 	  // Data API
 	  // ========
+	  $(document).off('click', Selector.button);
 	  $(document).on('click', Selector.button, function (e) {
 	    e.preventDefault()
 	    Plugin.call($(this), 'toggle')

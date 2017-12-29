@@ -1,4 +1,6 @@
 import React from 'react'
+import routes from '../../../routes'
+import {Link} from 'react-router-dom'
 
 export default class NavMenuList extends React.Component {
 
@@ -139,23 +141,19 @@ export default class NavMenuList extends React.Component {
 
   }
 
+  renderRouteList(){
+    return routes.map((route) => {
+      return <li key={route.path}> <Link to={route.path}><i className={'fa ' + route.icon}></i> {route.menu_name}</Link></li>
+    })
+  }
+
   render() {
     return (
 
 		<ul className="sidebar-menu" data-widget="tree">
 		 	<li className="header">MAIN NAVIGATION</li>
-	        <li className="treeview">
-	          <a href="#">
-	            <i className="fa fa-dashboard"></i> <span>Dashboard</span>
-	            <span className="pull-right-container">
-	              <i className="fa fa-angle-left pull-right"></i>
-	            </span>
-	          </a>
-	          <ul className="treeview-menu">
-	            <li><a href="../../index.html"><i className="fa fa-circle-o"></i> Dashboard v1</a></li>
-	            <li><a href="../../index2.html"><i className="fa fa-circle-o"></i> Dashboard v2</a></li>
-	          </ul>
-	        </li>
+
+      {this.renderRouteList()}
 		 	
 		</ul>
 

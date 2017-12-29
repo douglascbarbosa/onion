@@ -6,6 +6,7 @@ import Footer from './Footer';
 export default class Layout extends React.Component {
 
   componentDidMount(){
+    console.log('aqui');
     var $ = window.$;
     var DataKey = 'lte.layout'
 
@@ -142,10 +143,10 @@ export default class Layout extends React.Component {
         var $this = $(this)
         var data  = $this.data(DataKey)
 
-        if (!data) {
+//        if (!data) {
           var options = $.extend({}, Default, $this.data(), typeof option === 'object' && option)
           $this.data(DataKey, (data = new Layout(options)))
-        }
+//        }
 
         if (typeof option === 'string') {
           if (typeof data[option] === 'undefined') {
@@ -170,9 +171,9 @@ export default class Layout extends React.Component {
 
     // Layout DATA-API
     // ===============
-    $(window).on('load', function () {
+//    $(window).on('load', function () {
       Plugin.call($('body'))
-    })
+//    })
 
   }
 
