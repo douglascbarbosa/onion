@@ -10,18 +10,24 @@ import PrivateRoute from './PrivateRoute';
 import PublicRoute from './PublicRoute';
 
 
-const routes = [
+export const routes = [
 	require('./dashboard').default,
 ];
 
+const layouts = [];
+layouts['layout'] = Layout;
 
 export const history = createBrowserHistory();
+
+const components = routes.map((component) => {
+  return <PrivateRoute key={component.path} layout_type={layouts[component.layout_name]} path={component.path} component={component.component} /> 
+})
 
 const AppRouter = () => (
   <Router history={history}>
     <div>
       <Switch>
-        <PrivateRoute layout_type={Layout} path="/dashboard" component={Dashboard} />
+        {components}
         <PublicRoute path="/login" component={Dashboard} />
         <Redirect to="/dashboard" />
       </Switch>

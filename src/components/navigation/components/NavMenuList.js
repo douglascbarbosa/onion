@@ -3,7 +3,6 @@ import React from 'react'
 export default class NavMenuList extends React.Component {
 
   componentDidMount(){
-  	  console.log('aqui');
 
   	var $ = window.$;
   var DataKey = 'lte.tree'
