@@ -141,10 +141,44 @@ export default class NavMenuList extends React.Component {
 
   }
 
+  renderRouterLink(route){
+
+    return <Link to={route.path}><i className={'fa ' + route.icon}></i> {route.menu_name}</Link>
+
+  }
+
   renderRouteList(){
     return routes.map((route) => {
-      return <li key={route.path}> <Link to={route.path}><i className={'fa ' + route.icon}></i> {route.menu_name}</Link></li>
+
+      if (route.child_routes){
+        return (
+          <li key={route.path} className="treeview">
+            <a href="#">
+              <i className={'fa ' + route.icon}></i> <span>{route.menu_name}</span>
+              <span className="pull-right-container">
+                <i className="fa fa-angle-left pull-right"></i>
+              </span>
+            </a>
+            <ul className="treeview-menu">
+              {route.child_routes.map((route) => {
+                if (!route.public){
+                  return <li key={route.path}> {this.renderRouterLink(route)} </li>
+                }else{
+                  return null
+                }
+              })}
+            </ul>
+          </li>
+        )
+      }else{
+        if (!route.public){
+          return <li key={route.path}> {this.renderRouterLink(route)} </li>
+        }else{
+          return null
+        }
+      }
     })
+
   }
 
   render() {

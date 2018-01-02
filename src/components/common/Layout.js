@@ -6,7 +6,6 @@ import Footer from './Footer';
 export default class Layout extends React.Component {
 
   componentDidMount(){
-    console.log('aqui');
     var $ = window.$;
     var DataKey = 'lte.layout'
 

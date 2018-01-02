@@ -5,7 +5,6 @@ export default {
 	icon: 'fa-dashboard',
 	path: '/dashboard',
 	component: Dashboard,
+	public: false,
 	layout_name: 'layout'
 }
-
- 
