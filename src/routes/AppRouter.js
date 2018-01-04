@@ -11,23 +11,26 @@ import PublicRoute from './PublicRoute';
 
 import routes from './';
 
-
+//Define the layouts list, used by routes!
 const layouts = [];
 layouts['layout'] = Layout;
 layouts['layout_blank'] = Layout_blank;
 
 export const history = createBrowserHistory();
 
+//Return the route component!
 function getRoute( route ){
 
 	if (route.component){
-		return <PrivateRoute key={route.path} layout_type={layouts[route.layout_name]} path={route.path} component={route.component} />
+		if (route.public){
+			return <PublicRoute key={route.path} layout_type={layouts[route.layout_name]} path={route.path} component={route.component} />
+		}else{
+			return <PrivateRoute key={route.path} layout_type={layouts[route.layout_name]} path={route.path} component={route.component} />
+		}
 	}else{
 		return null
 	}
-
 }
-
 
 const componentsRoutes = routes.map((route) => {
 
@@ -44,7 +47,6 @@ const AppRouter = () => (
     <div>
       <Switch>
         {componentsRoutes}
-        <PublicRoute path="/login" component={Dashboard} />
         <Redirect to="/dashboard" />
       </Switch>
     </div>

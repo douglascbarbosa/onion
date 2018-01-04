@@ -4,6 +4,7 @@ import { Route, Redirect } from 'react-router-dom';
 
 export const PublicRoute = ({
   isAuthenticated,
+  layout_type : Layout,
   component: Component,
   ...rest
 }) => (
@@ -11,7 +12,9 @@ export const PublicRoute = ({
       isAuthenticated ? (
         <Redirect to="/dashboard" />
       ) : (
-          <Component {...props} />
+         <Layout>
+           <Component {...props} />
+         </Layout>
         )
     )} />
   );
