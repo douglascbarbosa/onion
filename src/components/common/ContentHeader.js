@@ -27,9 +27,8 @@ export default class ContentHeader extends React.Component {
   		if (pathname === route.path){
   			self.setRouteInfo(route);
   		}else if (route.child_routes){
-  			
   			console.log(route.child_routes);
-
+  			
   			route.child_routes.forEach( route => {
   					if (pathname === route.path){
   						self.setRouteInfo(route);
