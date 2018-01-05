@@ -1,14 +1,17 @@
 import React from 'react'
 import Header from './Header';
+import ContentHeader from './ContentHeader';
 import Navigation from '../navigation/components/Navigation';
 import Footer from './Footer';
 
-import {layoutLoader, controlsidebarLoader, pushmenuLoader, treeLoader } from '../../assets/adminlte'
+import {layoutLoader, controlsidebarLoader, pushmenuLoader, treeLoader, boxRefreshLoader, boxWidgetLoader } from '../../assets/adminlte'
 
 export default class Layout extends React.Component {
 
   componentDidMount(){
 
+    boxRefreshLoader(window.$)
+    boxWidgetLoader(window.$)
     layoutLoader(window.$);
     pushmenuLoader(window.$)
     controlsidebarLoader(window.$)
@@ -24,17 +27,7 @@ export default class Layout extends React.Component {
 
     		<div className="content-wrapper">
 
-          <section className="content-header">
-            <h1>
-              Blank page
-              <small>it all starts here</small>
-            </h1>
-            <ol className="breadcrumb">
-              <li><a href="#"><i className="fa fa-dashboard"></i> Home</a></li>
-              <li><a href="#">Examples</a></li>
-              <li className="active">Blank page</li>
-            </ol>
-          </section>
+          <ContentHeader />
 
           <section className="content">
             {this.props.children}          

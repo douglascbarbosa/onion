@@ -2,4 +2,7 @@
 export default [
 	require('./dashboard').default,
 	require('./auth').default,
+	require('./card').default,
+
 ];	
+

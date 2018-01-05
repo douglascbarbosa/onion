@@ -1,6 +1,7 @@
 import Dashboard from './containers/Dashboard';
 
 export default {
+	title: 'Dashboard',
 	menu_name: 'Dashboard',
 	icon: 'fa-dashboard',
 	path: '/dashboard',
