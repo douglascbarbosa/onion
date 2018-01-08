@@ -4,18 +4,18 @@ import ContentHeader from './ContentHeader';
 import Navigation from '../navigation/components/Navigation';
 import Footer from './Footer';
 
-import {layoutLoader, controlsidebarLoader, pushmenuLoader, treeLoader, boxRefreshLoader, boxWidgetLoader } from '../../assets/adminlte'
+import * as LayoutLoader from '../../assets/adminlte'
 
 export default class Layout extends React.Component {
 
   componentDidMount(){
 
-    boxRefreshLoader(window.$)
-    boxWidgetLoader(window.$)
-    layoutLoader(window.$);
-    pushmenuLoader(window.$)
-    controlsidebarLoader(window.$)
-    treeLoader(window.$)
+    LayoutLoader.boxRefreshLoader(window.$);
+    LayoutLoader.boxWidgetLoader(window.$);
+    LayoutLoader.layoutLoader(window.$);
+    LayoutLoader.pushmenuLoader(window.$);
+    LayoutLoader.controlsidebarLoader(window.$);
+    LayoutLoader.treeLoader(window.$);
 
   }
 

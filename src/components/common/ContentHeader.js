@@ -1,7 +1,7 @@
 import React from 'react'
 import routes from '../../routes';
+import {Link} from 'react-router-dom'
 
-console.log(routes);
 
 export default class ContentHeader extends React.Component {
 
@@ -9,12 +9,18 @@ export default class ContentHeader extends React.Component {
   constructor(props) {
   	super(props);
   	this.state = {
-  		title: 'Onion'
+  		icon: 'fa fa-dashboard',
+  		title: 'Onion',
+  		subtitle: ''
+
   	}
   }	
 
   setRouteInfo(route){
-  	this.setState({title: route.title})
+  	this.setState({ title: route.title || 'OnionPFT',
+  					subtitle: route.subtitle,
+  					icon: route.icon
+  				  })
   }	
 
   componentWillMount(){
@@ -27,8 +33,6 @@ export default class ContentHeader extends React.Component {
   		if (pathname === route.path){
   			self.setRouteInfo(route);
   		}else if (route.child_routes){
-  			console.log(route.child_routes);
-  			
   			route.child_routes.forEach( route => {
   					if (pathname === route.path){
   						self.setRouteInfo(route);
@@ -36,7 +40,48 @@ export default class ContentHeader extends React.Component {
   			});
   		}
   	})
+  }
 
+
+  renderBreadcrumb(){
+  	let crumbs = [];
+	const {pathname} = window.location;
+
+	//Add the default crumb!
+	crumbs.push({
+		path: '/',
+		menu_name: 'Home',
+		icon: 'fa fa-home'
+	});
+
+  	//Search for the route!
+  	routes.forEach(route => {
+
+  		if (pathname === route.path){
+  			crumbs.push({path : route.path, menu_name: route.menu_name, active : true});
+  		}else if (route.child_routes){
+
+  			route.child_routes.forEach( childRoute => {
+  					if (pathname === childRoute.path){
+  						//Only add the father if he has a path!
+  						if (route.path){
+	  						crumbs.push({path : route.path, menu_name: route.menu_name});
+  						}
+
+  						crumbs.push({path : childRoute.path, menu_name: childRoute.menu_name, active: true } );
+  					}
+  			});
+  		}
+
+  	});
+
+  	return crumbs.map( crumb => {
+  		if (crumb.active){
+	  		return <li key={crumb.path} className="active" > {crumb.menu_name} </li>
+  		}else{
+	  		return <li key={crumb.path} ><Link to={crumb.path} ><i className={crumb.icon}></i> {crumb.menu_name} </Link></li>
+  		}
+  	});
 
   }
 
@@ -46,16 +91,13 @@ export default class ContentHeader extends React.Component {
 
 	  <section className="content-header">
 	    <h1>
-	      {this.state.title}
-	      <small>it all starts here</small>
+	      <i className={'fa ' + this.state.icon} ></i> {this.state.title}
+	      <small>{this.state.subtitle}</small>
 	    </h1>
 	    <ol className="breadcrumb">
-	      <li><a href="#"><i className="fa fa-dashboard"></i> Home</a></li>
-	      <li><a href="#">Examples</a></li>
-	      <li className="active">Blank page</li>
+	      {this.renderBreadcrumb()}
 	    </ol>
 	  </section>
-
 
     )
   }
