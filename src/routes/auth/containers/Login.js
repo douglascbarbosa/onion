@@ -43,7 +43,8 @@ export default class Login extends React.Component {
             </form>
 
             <a href="#">I forgot my password</a><br/>
-            <a href="register.html" className="text-center">Register a new membership</a>
+            <Link className="text-center" to='/register'>Register a new membership</Link>
+
 
           </div>
         </div>

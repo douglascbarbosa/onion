@@ -7,14 +7,6 @@ import {controlsidebarLoader, pushmenuLoader, treeLoader} from '../../../assets/
 
 export default class Navigation extends React.Component {
   
-  componentDidMount(){
-
-    // pushmenuLoader(window.$)
-    // controlsidebarLoader(window.$)
-    // treeLoader(window.$)
-
-  }
-
   render() {
     return (
 

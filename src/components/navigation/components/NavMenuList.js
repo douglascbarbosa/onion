@@ -2,6 +2,7 @@ import React from 'react'
 import routes from '../../../routes'
 import {Link} from 'react-router-dom'
 import NavItem from './NavItem'
+import NavGroupItem from './NavGroupItem';
 
 export default class NavMenuList extends React.Component {
 
@@ -29,17 +30,7 @@ export default class NavMenuList extends React.Component {
 
         if (route.menu_name){
           return (
-            <li key={route.path} className="treeview">
-              <a href="#">
-                <i className={'fa ' + route.icon}></i> <span>{route.menu_name}</span>
-                <span className="pull-right-container">
-                  <i className="fa fa-angle-left pull-right"></i>
-                </span>
-              </a>
-              <ul className="treeview-menu">
-                {this.renderChild(route.child_routes)}
-              </ul>
-            </li>
+            <NavGroupItem key={route.menu_name} icon={route.icon} menu_name={route.menu_name} child_routes={route.child_routes} />
           )
         }else{
           return this.renderChild(route.child_routes)

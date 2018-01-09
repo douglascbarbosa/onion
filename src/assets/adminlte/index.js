@@ -434,10 +434,10 @@ export const controlsidebarLoader = ($) => {
 
   // ControlSidebar Data API
   // =======================
-  $(document).on('click', Selector.data, function (event) {
-    if (event) event.preventDefault()
-    Plugin.call($(this), 'toggle')
-  })
+   $(document).on('click', Selector.data, function (event) {
+     if (event) event.preventDefault()
+     Plugin.call($(this), 'toggle')
+   })
 
 }
 

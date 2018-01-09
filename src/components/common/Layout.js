@@ -3,6 +3,7 @@ import Header from './Header';
 import ContentHeader from './ContentHeader';
 import Navigation from '../navigation/components/Navigation';
 import Footer from './Footer';
+import Sidebar from '../control-sidebar/components/Sidebar';
 
 import * as LayoutLoader from '../../assets/adminlte'
 
@@ -36,7 +37,7 @@ export default class Layout extends React.Component {
     		</div>
 
         <Footer />
-
+        <Sidebar />
       </div>
     )
   }

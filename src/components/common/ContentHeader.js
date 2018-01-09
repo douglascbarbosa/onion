@@ -66,7 +66,9 @@ export default class ContentHeader extends React.Component {
   						//Only add the father if he has a path!
   						if (route.path){
 	  						crumbs.push({path : route.path, menu_name: route.menu_name});
-  						}
+  						}else{
+                crumbs.push({path : '', menu_name: route.menu_name, active: true});
+              }
 
   						crumbs.push({path : childRoute.path, menu_name: childRoute.menu_name, active: true } );
   					}

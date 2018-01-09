@@ -8,11 +8,11 @@ import {layoutLoader} from '../../assets/adminlte'
 export default class Layout_blank extends React.Component {
 
     componentWillMount(){
-      window.$('body').addClass('login-page');
     }
 
     componentDidMount(){
       layoutLoader(window.$);
+      window.$('body').addClass('login-page');
     }
     
     componentWillUnmount(){

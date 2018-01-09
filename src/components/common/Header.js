@@ -18,6 +18,15 @@ export default class Header extends React.Component {
 		        <span className="sr-only">Toggle navigation</span>
 		      </a>
 
+
+		      <div className="navbar-custom-menu">
+		        <ul className="nav navbar-nav">
+		          <li>
+		            <a href="#" data-toggle="control-sidebar"><i className="fa fa-gears"></i></a>
+		          </li>
+		        </ul>
+		      </div>
+
 	    	
 	    </nav>
 
