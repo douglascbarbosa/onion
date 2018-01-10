@@ -43,7 +43,7 @@ export default class NavGroupItem extends React.Component {
     
     return (
 
-		<li className={'treeview ' + (this.state.active ? 'active' : '')}>
+		<li className={'treeview ' + (this.state.active ? 'active menu-open' : '')}>
 		  <a href="#">
 		    <i className={'fa ' + this.props.icon}></i> <span>{this.props.menu_name}</span>
 		    <span className="pull-right-container">
