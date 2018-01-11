@@ -17,7 +17,13 @@ export default class Layout extends React.Component {
     LayoutLoader.pushmenuLoader(window.$);
     LayoutLoader.controlsidebarLoader(window.$);
     LayoutLoader.treeLoader(window.$);
+    
+//    window.$('body').addClass('fixed');
 
+  }
+
+  componentWillUnmount(){
+    //window.$('body').removeClass('fixed');
   }
 
   render() {

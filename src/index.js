@@ -1,5 +1,5 @@
 //Importing the essential dependencies!  
-window.jQuery = window.$ =  require("jquery");
+window.jQuery = window.$ = require("jquery");
 
 // window.moment = require('moment');
 // window._ = require('lodash');
@@ -12,6 +12,8 @@ window.jQuery = window.$ =  require("jquery");
 // import 'imports-loader?jQuery=jquery!jquery-color/jquery.color.js'
 
 require("bootstrap");
+require("datatables");
+require("datatables.net-bs");
 
 require.ensure([], ()=>{
   require('./App');

@@ -5,6 +5,8 @@
   "dependencies": {
     "axios": "^0.16.2",
     "bootstrap": "^3.3.7",
+    "datatables": "^1.10.13",
+    "datatables.net-bs": "^1.10.16",
     "history": "^4.7.2",
     "icheck": "^1.0.2",
     "jquery": "^3.2.1",
