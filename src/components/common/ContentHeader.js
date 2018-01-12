@@ -45,7 +45,7 @@ export default class ContentHeader extends React.Component {
 
   renderBreadcrumb(){
   	let crumbs = [];
-	const {pathname} = window.location;
+	  const {pathname} = window.location;
 
 	//Add the default crumb!
 	crumbs.push({
@@ -58,19 +58,19 @@ export default class ContentHeader extends React.Component {
   	routes.forEach(route => {
 
   		if (pathname === route.path){
-  			crumbs.push({path : route.path, menu_name: route.menu_name, active : true});
+  			crumbs.push({path : route.path, menu_name: route.menu_name || route.title, active : true});
   		}else if (route.child_routes){
 
   			route.child_routes.forEach( childRoute => {
   					if (pathname === childRoute.path){
   						//Only add the father if he has a path!
   						if (route.path){
-	  						crumbs.push({path : route.path, menu_name: route.menu_name});
+	  						crumbs.push({path : route.path, menu_name: route.menu_name || route.title});
   						}else{
-                crumbs.push({path : '', menu_name: route.menu_name, active: true});
+                crumbs.push({path : '', menu_name: route.menu_name || route.title, active: true});
               }
 
-  						crumbs.push({path : childRoute.path, menu_name: childRoute.menu_name, active: true } );
+  						crumbs.push({path : childRoute.path, menu_name: childRoute.menu_name || childRoute.title, active: true } );
   					}
   			});
   		}
@@ -91,17 +91,28 @@ export default class ContentHeader extends React.Component {
   	
     return (
 
-	  <section className="content-header">
-	    <h1>
-	      <i className={'fa ' + this.state.icon} ></i> {this.state.title}
-	      <small>{this.state.subtitle}</small>
-	    </h1>
-	    <ol className="breadcrumb">
-	      {this.renderBreadcrumb()}
-	    </ol>
-	  </section>
+  	  <section className="content-header" style={contentStyle}>
+  	    <h1>
+  	      <i className={'fa ' + this.state.icon} ></i> {this.state.title}
+  	      <small>{this.state.subtitle}</small>
+  	    </h1>
+  	    <ol className="breadcrumb">
+  	      {this.renderBreadcrumb()}
+  	    </ol>
+  	  </section>
 
     )
   }
 }
 
+const contentStyle = {
+  background: 'white', 
+  position: 'fixed', 
+  zIndex: 901,
+  width: '100%',
+  minHeight: 50,
+  webkitBoxShadow: '0 6px 4px -4px rgba(0, 0, 0, 0.2)',
+  mozBoxShadow: '0 6px 4px -4px rgba(0, 0, 0, 0.2)',
+  boxShadow: '0 6px 4px -4px rgba(0, 0, 0, 0.2)', 
+
+}

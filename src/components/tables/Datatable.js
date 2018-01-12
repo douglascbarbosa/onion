@@ -10,7 +10,12 @@ export default class Datatable extends React.Component {
 
     //Create the datatable element!
     const element = window.$(this.refs.table);
-    const _dataTable = element.DataTable();
+
+    //Take the Datatable options!
+    let {options} = {...this.props} || {};
+
+    //Creating the Datatable element object!
+    const _dataTable = element.DataTable(options);
 
   }
 

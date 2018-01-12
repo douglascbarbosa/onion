@@ -4,35 +4,78 @@ import Datatable from '../../../components/tables/Datatable'
 
 
 export default class Accounts extends React.Component {
+  
   render() {
+
+    //@TODO - take information by store!
+    let data = [
+        {"account_name" : 'Teste', "account_value" : 10000},
+        {"account_name" : 'Teste2', "account_value" : 10},
+        {"account_name" : 'Teste', "account_value" : 10000},
+        {"account_name" : 'Teste', "account_value" : 10000},
+        {"account_name" : 'Teste', "account_value" : 10000},
+        {"account_name" : 'Teste', "account_value" : 10000},
+        {"account_name" : 'Teste', "account_value" : 10000},
+        {"account_name" : 'Teste', "account_value" : 10000},
+        {"account_name" : 'Teste', "account_value" : 10000},
+        {"account_name" : 'Teste', "account_value" : 10000},
+        {"account_name" : 'Teste', "account_value" : 10000},
+        {"account_name" : 'Teste', "account_value" : 10000},
+        {"account_name" : 'Teste', "account_value" : 10000},
+        {"account_name" : 'Teste', "account_value" : 10000},
+        {"account_name" : 'Teste', "account_value" : 10000},
+        {"account_name" : 'Teste', "account_value" : 10000},
+        {"account_name" : 'Teste', "account_value" : 10000},
+        {"account_name" : 'Teste', "account_value" : 10000},
+        {"account_name" : 'Teste', "account_value" : 10000},
+        {"account_name" : 'Teste', "account_value" : 10000},
+        {"account_name" : 'Teste', "account_value" : 10000},
+        {"account_name" : 'Teste', "account_value" : 10000},
+        {"account_name" : 'Teste', "account_value" : 10000},
+        {"account_name" : 'Teste', "account_value" : 10000},
+        {"account_name" : 'Teste', "account_value" : 10000},
+        {"account_name" : 'Teste', "account_value" : 10000},
+        {"account_name" : 'Teste', "account_value" : 10000},
+        {"account_name" : 'Teste', "account_value" : 10000},
+        {"account_name" : 'Teste', "account_value" : 10000},
+        {"account_name" : 'Teste', "account_value" : 10000},
+        {"account_name" : 'Teste', "account_value" : 10000},
+        {"account_name" : 'Teste', "account_value" : 10000},
+        {"account_name" : 'Teste', "account_value" : 10000},
+        {"account_name" : 'Teste', "account_value" : 10000},
+        {"account_name" : 'Teste', "account_value" : 10000},
+        {"account_name" : 'Teste', "account_value" : 10000},
+        {"account_name" : 'Teste', "account_value" : 10000},
+        {"account_name" : 'Teste', "account_value" : 10000},
+        {"account_name" : 'Teste', "account_value" : 10000},
+        {"account_name" : 'Teste', "account_value" : 10000},
+        {"account_name" : 'Teste', "account_value" : 10000},
+        {"account_name" : 'Teste', "account_value" : 10000},
+        {"account_name" : 'Teste', "account_value" : 10000},
+        {"account_name" : 'Teste', "account_value" : 10000},
+    ]
+
+    let options = {
+      "data": data,
+      "columns": [
+          {"data": "account_name"},
+          {"data": "account_value"}
+      ],
+      "order": [[1, 'desc']]
+    }
+
     return (
       <div className="row">
         <div className="col-xs-12">
           <div className="box">
-            <div className="box-header">
-            </div>
             <div className="box-body">
-            <Datatable className="table table-bordered table-hover">
-                <thead>
-                <tr>
-                  <th>Description</th>
-                  <th>Value</th>
-                </tr>
-                </thead>
-                <tbody>
-                <tr>
-                  <td>Trident</td>
-                  <td>Internet
-                    Explorer 4.0
-                  </td>
-                </tr>
-                </tbody>
-                <tfoot>
-                <tr>
-                  <th>Rendering engine</th>
-                  <th>Browser</th>
-                </tr>
-                </tfoot>
+                <Datatable options={options} className="table table-bordered table-hover">
+                    <thead>
+                        <tr>
+                            <th>Name</th>
+                            <th>Value</th>
+                        </tr>
+                    </thead>
                 </Datatable>
             </div>
           </div>

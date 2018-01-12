@@ -1,4 +1,5 @@
 import Accounts from './containers/Accounts';
+import Account from './containers/Account';
 
 export default {
 	title: 'Accounts',
@@ -8,4 +9,14 @@ export default {
 	component: Accounts,
 	public: false,
 	layout_name: 'layout',
+	child_routes: [
+		{
+			title: 'Account',
+			icon: 'fa-credit-card',
+			path: '/account',
+			component: Account,
+			public: false,
+			layout_name: 'layout'
+		}
+	]
 }

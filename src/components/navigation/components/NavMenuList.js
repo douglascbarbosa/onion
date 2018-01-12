@@ -24,9 +24,10 @@ export default class NavMenuList extends React.Component {
   }
 
   renderRouteList(){
+
     return routes.map((route) => {
 
-      if (route.child_routes){
+      if (!route.component && route.child_routes){
 
         if (route.menu_name){
           return (

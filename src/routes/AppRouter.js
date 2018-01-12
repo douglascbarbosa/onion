@@ -32,10 +32,20 @@ function getRoute( route ){
 	}
 }
 
+//Creating the app routes!
 const componentsRoutes = routes.map((route) => {
 
 	if (route.child_routes){
-		return route.child_routes.map((route) => { return getRoute(route) } ); 
+
+		//Take the child routes!
+		const child_routes = route.child_routes.map((route) => { return getRoute(route) } );
+		
+		//Push the father route on the array!
+		if (route.component){
+			child_routes.push(getRoute(route))
+		}
+
+		return child_routes; 
 	}else{
 		return getRoute(route)
 	}

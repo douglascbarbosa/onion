@@ -36,7 +36,7 @@ export default class Layout extends React.Component {
 
           <ContentHeader />
 
-          <section className="content">
+          <section className="content" style={{marginTop: 50}}>
             {this.props.children}          
           </section>
 
