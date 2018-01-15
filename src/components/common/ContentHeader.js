@@ -96,7 +96,7 @@ export default class ContentHeader extends React.Component {
   	      <i className={'fa ' + this.state.icon} ></i> {this.state.title}
   	      <small>{this.state.subtitle}</small>
   	    </h1>
-  	    <ol className="breadcrumb">
+  	    <ol className="breadcrumb" style={breadcrumbStyle}>
   	      {this.renderBreadcrumb()}
   	    </ol>
   	  </section>
@@ -111,8 +111,14 @@ const contentStyle = {
   zIndex: 901,
   width: '100%',
   minHeight: 50,
-  webkitBoxShadow: '0 6px 4px -4px rgba(0, 0, 0, 0.2)',
-  mozBoxShadow: '0 6px 4px -4px rgba(0, 0, 0, 0.2)',
+  WebkitBoxShadow: '0 6px 4px -4px rgba(0, 0, 0, 0.2)',
+  MozBoxShadow: '0 6px 4px -4px rgba(0, 0, 0, 0.2)',
   boxShadow: '0 6px 4px -4px rgba(0, 0, 0, 0.2)', 
+}
 
+const breadcrumbStyle = {
+  position: 'relative',
+  float: 'none',
+  top : 0,
+  left: 0
 }

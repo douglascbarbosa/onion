@@ -1,6 +1,8 @@
 import React from 'react';
 import { Router, Route, Switch, Link, NavLink, Redirect } from 'react-router-dom';
-import { createBrowserHistory } from 'history';
+//import { createBrowserHistory } from 'history';
+
+import history from './History';
 
 import Dashboard from './dashboard/containers/Dashboard';
 import Layout from '../components/common/Layout';
@@ -16,7 +18,7 @@ const layouts = [];
 layouts['layout'] = Layout;
 layouts['layout_blank'] = Layout_blank;
 
-export const history = createBrowserHistory();
+//export const history = createBrowserHistory();
 
 //Return the route component!
 function getRoute( route ){

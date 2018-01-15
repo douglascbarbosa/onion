@@ -15,7 +15,7 @@ import store from './store/configureStore'
 
 import AppRouter from './routes/AppRouter';
 
-const history = syncHistoryWithStore(createBrowserHistory(), store);
+//const history = syncHistoryWithStore(createBrowserHistory(), store);
 
 //const routeComponents = routes.map(({path, component}, key) => <Route exact path={path} component={component} key={key} />);	
 

@@ -1,10 +1,16 @@
 import React from 'react'
 import Datatable from '../../../components/tables/Datatable'
-
-
+import ActionButton from '../../../components/common/ActionButton'
+import history from '../../../routes/History'
+import {Redirect} from 'react-router-dom'
 
 export default class Accounts extends React.Component {
   
+  handleNewClick(){
+    //Redirect to account!
+    history.push('/account'); 
+  }
+
   render() {
 
     //@TODO - take information by store!
@@ -67,6 +73,11 @@ export default class Accounts extends React.Component {
     return (
       <div className="row">
         <div className="col-xs-12">
+              
+          <ActionButton onClick={() => this.handleNewClick()}>
+            <i className="fa fa-plus"></i> New 
+          </ActionButton>
+
           <div className="box">
             <div className="box-body">
                 <Datatable options={options} className="table table-bordered table-hover">
