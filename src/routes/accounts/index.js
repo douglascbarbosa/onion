@@ -4,7 +4,7 @@ import Account from './containers/Account';
 export default {
 	title: 'Accounts',
 	menu_name: 'Accounts',
-	icon: 'fa-credit-card',
+	icon: 'fa-university',
 	path: '/accounts',
 	component: Accounts,
 	public: false,
@@ -12,7 +12,7 @@ export default {
 	child_routes: [
 		{
 			title: 'Account',
-			icon: 'fa-credit-card',
+			icon: 'fa-university',
 			path: '/account',
 			component: Account,
 			public: false,

@@ -2,10 +2,10 @@
 export default [
 	require('./dashboard').default,
 	require('./accounts').default,
+	require('./transactions').default,
 	require('./alert').default,
 	require('./auth').default,
 	require('./card').default,
-	require('./category').default,
-
+	require('./category').default
 ];	
 

@@ -1,5 +1,6 @@
 //Importing the essential dependencies!  
 window.jQuery = window.$ = require("jquery");
+window.moment = require('moment');
 
 // window.moment = require('moment');
 // window._ = require('lodash');
