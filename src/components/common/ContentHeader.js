@@ -79,9 +79,9 @@ export default class ContentHeader extends React.Component {
 
   	return crumbs.map( crumb => {
   		if (crumb.active){
-	  		return <li key={crumb.path} className="active" > {crumb.menu_name} </li>
+	  		return <li key={crumb.path}  className="active" > {crumb.menu_name} </li>
   		}else{
-	  		return <li key={crumb.path} ><Link to={crumb.path} ><i className={crumb.icon}></i> {crumb.menu_name} </Link></li>
+	  		return <li key={crumb.path} ><Link style={{color:'white'}} to={crumb.path} ><i className={crumb.icon}></i> {crumb.menu_name} </Link></li>
   		}
   	});
 
@@ -106,7 +106,7 @@ export default class ContentHeader extends React.Component {
 }
 
 const contentStyle = {
-  background: 'white', 
+  background: '#222d32', 
   position: 'fixed', 
   zIndex: 901,
   width: '100%',
@@ -114,11 +114,14 @@ const contentStyle = {
   WebkitBoxShadow: '0 6px 4px -4px rgba(0, 0, 0, 0.2)',
   MozBoxShadow: '0 6px 4px -4px rgba(0, 0, 0, 0.2)',
   boxShadow: '0 6px 4px -4px rgba(0, 0, 0, 0.2)', 
+  color: 'white'
+
 }
 
 const breadcrumbStyle = {
   position: 'relative',
   float: 'none',
   top : 0,
-  left: 0
+  left: 0,
+  color: 'white'
 }
