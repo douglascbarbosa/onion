@@ -1,7 +1,4 @@
 import React from 'react'
-import Header from './Header';
-import Navigation from '../navigation/components/Navigation';
-import Footer from './Footer';
 
 import {layoutLoader} from '../../assets/adminlte'
 

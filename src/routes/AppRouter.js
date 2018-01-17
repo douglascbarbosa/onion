@@ -1,10 +1,9 @@
 import React from 'react';
-import { Router, Route, Switch, Link, NavLink, Redirect } from 'react-router-dom';
+import { Router, Switch, Redirect } from 'react-router-dom';
 //import { createBrowserHistory } from 'history';
 
 import history from './History';
 
-import Dashboard from './dashboard/containers/Dashboard';
 import Layout from '../components/common/Layout';
 import Layout_blank from '../components/common/Layout_blank';
 
