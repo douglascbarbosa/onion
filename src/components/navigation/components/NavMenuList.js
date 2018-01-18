@@ -4,11 +4,13 @@ import {Link} from 'react-router-dom'
 import NavItem from './NavItem'
 import NavGroupItem from './NavGroupItem';
 
+import Msg from '../../i18n/Msg'
+
 export default class NavMenuList extends React.Component {
 
   renderRouterLink(route){
 
-    return <NavItem key={route.path} exact to={route.path}><i className={'fa ' + route.icon}></i> <span>{route.menu_name}</span></NavItem>
+    return <NavItem key={route.path} exact to={route.path}><i className={'fa ' + route.icon}></i> <Msg phrase={route.menu_name}/></NavItem>
 
   }
 

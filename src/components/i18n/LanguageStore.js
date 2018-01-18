@@ -4,9 +4,9 @@ import LanguageActions from './LanguageActions'
 
 const data = {
   language: {
-    key: "us",
-    alt: "United States",
-    title: "English (US)"
+    key: "br",
+    alt: "Brasil",
+    title: "Portugês (BR)"
   },
   languages: [],
   phrases: {}
@@ -33,11 +33,12 @@ export default  class LanguageStore extends Reflux.Store {
   }
 
   onSelectCompleted(_data) {
+    console.log(data);
     data.phrases = _data;
     this.trigger(data)
   }
 
-  setLanguage(_lang) {
+  static setLanguage(_lang) {
     data.language = _lang
   }
 }

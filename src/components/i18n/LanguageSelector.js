@@ -4,6 +4,8 @@ import classnames from 'classnames'
 import LanguageActions from './LanguageActions'
 import LanguageStore from './LanguageStore'
 
+import FlagIcon from '../common/FlagIcon'
+
 export default class LanguageSelector extends Reflux.Component{
     constructor(props)
     {
@@ -15,15 +17,20 @@ export default class LanguageSelector extends Reflux.Component{
 
         let languages = this.state.languages;
         let language = this.state.language;
+
+        if(language) {
+//            this._selectLanguage(language);
+        }
+
         if(!this.state.language) return <div/>
         return (
-            <ul className="header-dropdown-list hidden-xs ng-cloak">
-                <li className="dropdown">
-                    <a className="dropdown-toggle" href="#"  data-toggle="dropdown">
-                        <img src="assets/img/blank.gif"
-                             className={classnames(['flag', 'flag-'+language.key])} alt={language.alt} />
+                <li className="dropdown messages-menu">
+
+                    <a href="#" className="dropdown-toggle" data-toggle="dropdown">
+                        <FlagIcon code={language.key}/>
                         <span>&nbsp;{language.title}&nbsp;</span>
-                        <i className="fa fa-angle-down" /></a>
+                    </a>
+
                     <ul className="dropdown-menu pull-right">
                         {languages.map((_lang, idx)=>{
                             return (
@@ -31,20 +38,17 @@ export default class LanguageSelector extends Reflux.Component{
                                     active: _lang.key == language.key
                                 })}>
                                     <a href="#" onClick={this._selectLanguage.bind(this, _lang)} >
-                                        <img src="assets/img/blank.gif"
-                                             className={classnames(['flag', 'flag-'+_lang.key])} alt={_lang.alt} />
-                                        <span>&nbsp;                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               {_lang.title}</span>
+                                        <FlagIcon code={_lang.key}  /> {_lang.title}
                                     </a>
                                 </li>
                             )
                         })}
                     </ul>
                 </li>
-            </ul>
         )
     }
     _selectLanguage(language){
-
+        LanguageStore.setLanguage(language);
         LanguageActions.select(language)
     }
 }

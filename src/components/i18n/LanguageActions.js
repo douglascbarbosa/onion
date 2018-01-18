@@ -12,14 +12,14 @@ const LanguageActions = Reflux.createActions({
 
 
 LanguageActions.init.listen(function () {
-  $.getJSON('assets/api/langs/languages.json')
+  window.$.getJSON('assets/langs/languages.json')
     .then(this.completed, this.failed)
 
 
 })
 
 LanguageActions.select.listen(function (language) {
-  $.getJSON('assets/api/langs/' + language.key + '.json')
+  window.$.getJSON('assets/langs/' + language.key + '.json')
     .then(this.completed, this.failed)
 });
 
