@@ -1,5 +1,6 @@
 import React from 'react'
 import NavItem from './NavItem'
+import Msg from '../../i18n/Msg'
 
 export default class NavGroupItem extends React.Component {
 
@@ -22,7 +23,7 @@ export default class NavGroupItem extends React.Component {
 
   renderRouterLink(route){
 
-    return <NavItem key={route.path} exact to={route.path}><i className={'fa ' + route.icon}></i> <span>{route.menu_name}</span></NavItem>
+    return <NavItem key={route.path} exact to={route.path}><i className={'fa ' + route.icon}></i> <Msg phrase={route.menu_name}/></NavItem>
 
   }
 
@@ -43,17 +44,17 @@ export default class NavGroupItem extends React.Component {
     
     return (
 
-		<li className={'treeview ' + (this.state.active ? 'active menu-open' : '')}>
-		  <a href="#">
-		    <i className={'fa ' + this.props.icon}></i> <span>{this.props.menu_name}</span>
-		    <span className="pull-right-container">
-		      <i className="fa fa-angle-left pull-right"></i>
-		    </span>
-		  </a>
-		  <ul className="treeview-menu">
-		    {this.renderChild(this.props.child_routes)}
-		  </ul>
-		</li>
+  		<li className={'treeview ' + (this.state.active ? 'active menu-open' : '')}>
+  		  <a href="#">
+  		    <i className={'fa ' + this.props.icon}></i> <Msg phrase={this.props.menu_name} /> 
+  		    <span className="pull-right-container">
+  		      <i className="fa fa-angle-left pull-right"></i>
+  		    </span>
+  		  </a>
+  		  <ul className="treeview-menu">
+  		    {this.renderChild(this.props.child_routes)}
+  		  </ul>
+  		</li>
 
     )
   }

@@ -1,3 +1,13 @@
 {
-	"Accounts":"Conta"
+	"Accounts":"Contas",
+	"Account": "Conta",
+	"Transactions": "Transações",
+	"Alerts": "Alertas",
+	"Credit cards": "Cartões de crédito",
+	"Categories": "Categorias",
+	"Expenses": "Despesas",
+	"Income": "Receita",
+	"General information":"Informações gerais",
+	"Transaction": "Transação",
+	"Name": "Nome"
 }

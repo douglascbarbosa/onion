@@ -1,6 +1,7 @@
 import React from 'react'
 import routes from '../../routes';
 import {Link} from 'react-router-dom'
+import Msg from '../i18n/Msg'
 
 
 export default class ContentHeader extends React.Component {
@@ -79,9 +80,9 @@ export default class ContentHeader extends React.Component {
 
   	return crumbs.map( crumb => {
   		if (crumb.active){
-	  		return <li key={crumb.path}  className="active" > {crumb.menu_name} </li>
+	  		return <li key={crumb.path}  className="active" > <Msg phrase={crumb.menu_name} /> </li>
   		}else{
-	  		return <li key={crumb.path} ><Link style={{color:'white'}} to={crumb.path} ><i className={crumb.icon}></i> {crumb.menu_name} </Link></li>
+	  		return <li key={crumb.path} ><Link style={{color:'white'}} to={crumb.path} ><i className={crumb.icon}></i> <Msg phrase={crumb.menu_name} /></Link></li>
   		}
   	});
 
@@ -93,8 +94,8 @@ export default class ContentHeader extends React.Component {
 
   	  <section className="content-header" style={contentStyle}>
   	    <h1>
-  	      <i className={'fa ' + this.state.icon} ></i> {this.state.title}
-  	      <small>{this.state.subtitle}</small>
+  	      <i className={'fa ' + this.state.icon} ></i> <Msg phrase={this.state.title} /> 
+  	      <small><Msg phrase={this.state.subtitle} /></small>
   	    </h1>
   	    <ol className="breadcrumb" style={breadcrumbStyle}>
   	      {this.renderBreadcrumb()}

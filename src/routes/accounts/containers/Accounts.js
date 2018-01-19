@@ -3,6 +3,7 @@ import Datatable from '../../../components/tables/Datatable'
 import ActionButton from '../../../components/common/ActionButton'
 import history from '../../../routes/History'
 import {Redirect} from 'react-router-dom'
+import Msg from '../../../components/i18n/Msg'
 
 export default class Accounts extends React.Component {
   
@@ -83,7 +84,7 @@ export default class Accounts extends React.Component {
                 <Datatable options={options} className="table table-bordered table-hover">
                     <thead>
                         <tr>
-                            <th>Name</th>
+                            <th><Msg phrase="Name" /></th>
                             <th>Value</th>
                         </tr>
                     </thead>

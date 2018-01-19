@@ -4,7 +4,7 @@ import Reflux from 'reflux'
 import LanguageStore from './LanguageStore'
 
 
-export default class Msg extends React.Component {
+export default class Msg extends Reflux.Component {
 
   constructor(props) {
     super(props)

@@ -12,16 +12,13 @@ export default class LanguageSelector extends Reflux.Component{
       super(props);
       this.state = {}; // our store will add its own state to the component's
       this.store = LanguageStore; // <- just assign the store class itself
+      LanguageActions.init();
+
     }
     render () {
 
         let languages = this.state.languages;
         let language = this.state.language;
-
-        if(language) {
-//            this._selectLanguage(language);
-        }
-
         if(!this.state.language) return <div/>
         return (
                 <li className="dropdown messages-menu">

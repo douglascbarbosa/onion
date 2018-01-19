@@ -3,7 +3,6 @@ import routes from '../../../routes'
 import {Link} from 'react-router-dom'
 import NavItem from './NavItem'
 import NavGroupItem from './NavGroupItem';
-
 import Msg from '../../i18n/Msg'
 
 export default class NavMenuList extends React.Component {
