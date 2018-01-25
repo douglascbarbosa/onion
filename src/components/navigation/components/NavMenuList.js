@@ -52,7 +52,7 @@ export default class NavMenuList extends React.Component {
     return (
 
   		<ul className="sidebar-menu" data-widget="tree">
-  		 	<li className="header">MAIN NAVIGATION</li>
+  		 	<li style={{marginTop: 6}}></li>
 
         {this.renderRouteList()}
   		 	

@@ -5,3 +5,13 @@
 .negative-value {
 	color: #f56954;
 }
+
+/*React DatePicker changes*/
+.react-datepicker-wrapper{
+	width: 100%;
+}
+
+.react-datepicker__input-container{
+    width: 100%;
+    margin-bottom: -5px;  
+}
