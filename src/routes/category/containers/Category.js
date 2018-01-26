@@ -1,7 +1,6 @@
 import React from 'react'
 import ActionButtonGroup from '../../../components/common/ActionButtonGroup'
 import Msg from '../../../components/i18n/Msg'
-import CurrencyInput from 'react-currency-input';
 
 export default class Account extends React.Component {
   render() {
@@ -14,7 +13,7 @@ export default class Account extends React.Component {
             </ActionButtonGroup>
 
             <div className="box-header with-border">
-              <h3 className="box-title"><Msg phrase="New Account" /></h3> 
+              <h3 className="box-title"><Msg phrase="New Category" /></h3> 
             </div>
 
             <form role="form">
@@ -37,8 +36,8 @@ export default class Account extends React.Component {
                   <div className="col-lg-6">
 
                     <div className="form-group">
-                      <label ><Msg phrase="Initial value" /></label>
-                      <CurrencyInput prefix="R$" decimalSeparator="," thousandSeparator="." type="text" className="form-control" placeholder="Value" />
+                      <label > <Msg phrase="Description" /></label>
+                      <input type="text" className="form-control" placeholder="Description" />
                     </div>
 
                   </div>

@@ -1,5 +1,6 @@
 import Expenses from './containers/Expenses';
 import Income from './containers/Income';
+import Category from './containers/Category';
 
 export default {
 	menu_name: 'Categories',
@@ -22,7 +23,16 @@ export default {
 			component: Income,
 			public: false,
 			layout_name: 'layout',
+		 },
+		{
+			title: 'Category',
+			icon: 'fa-tag',
+			path: '/category/:type',
+			component: Category,
+			public: false,
+			layout_name: 'layout'
 		 }
+
 
 	]
 }

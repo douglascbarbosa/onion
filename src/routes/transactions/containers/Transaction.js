@@ -3,6 +3,9 @@ import Select2 from 'react-select2-wrapper'
 import DatePicker from 'react-datepicker'
 import moment from 'moment'
 import ActionButtonGroup from '../../../components/common/ActionButtonGroup'
+import Msg from '../../../components/i18n/Msg'
+import CurrencyInput from 'react-currency-input';
+
 
 export default class Transaction extends React.Component {
   
@@ -26,12 +29,12 @@ export default class Transaction extends React.Component {
         <div className="box box-primary">
 
             <ActionButtonGroup>
-              <a className="btn btn-app"><i className="fa fa-mail-reply"></i> Cancel</a>
-              <a className="btn btn-app"><i className="fa fa-save"></i> Save</a>
+              <a className="btn btn-app"><i className="fa fa-mail-reply"></i> <Msg phrase="Cancel" /></a>
+              <a className="btn btn-app"><i className="fa fa-save"></i> <Msg phrase="Save" /> </a>
             </ActionButtonGroup>
 
             <div className="box-header with-border">
-              <h3 className="box-title">New Transaction</h3> 
+              <h3 className="box-title"><Msg phrase="New Transaction" /></h3> 
             </div>
 
             <form role="form">
@@ -44,7 +47,7 @@ export default class Transaction extends React.Component {
                   <div className="col-lg-6">
 
                     <div className="form-group">
-                      <label >Description</label>
+                      <label > <Msg phrase="Description" /></label>
                       <input type="text" className="form-control" placeholder="Description" />
                     </div>
 
@@ -53,7 +56,7 @@ export default class Transaction extends React.Component {
 
                   <div className="col-lg-6">
                     <div className="form-group">
-                      <label>Type</label>
+                      <label><Msg phrase="Type" /></label>
                       <Select2 
                         style={{width: '100%'}} 
                         className="select2"
@@ -72,8 +75,8 @@ export default class Transaction extends React.Component {
                   <div className="col-lg-6">
 
                     <div className="form-group">
-                      <label >Amount</label>
-                      <input type="text" className="form-control" placeholder="Amount" />
+                      <label ><Msg phrase="Amount" /></label>
+                      <CurrencyInput prefix="R$" decimalSeparator="," thousandSeparator="." type="text" className="form-control" placeholder="Amount" />
                     </div>
 
                   </div>
@@ -81,7 +84,7 @@ export default class Transaction extends React.Component {
                   <div className="col-lg-6">
                     
                     <div className="form-group">
-                      <label>Date:</label>
+                      <label><Msg phrase="Date" /></label>
                       <div className="input-group">
                         <div className="input-group-addon">
                           <i className="fa fa-calendar"></i>
@@ -98,7 +101,7 @@ export default class Transaction extends React.Component {
                   <div className="col-lg-6">
 
                     <div className="form-group">
-                      <label>Category</label>
+                      <label><Msg phrase="Category" /></label>
                       <Select2 
                         style={{width: '100%'}} 
                         className="select2"
@@ -117,7 +120,7 @@ export default class Transaction extends React.Component {
                   <div className="col-lg-6">
 
                     <div className="form-group">
-                      <label>Account</label>
+                      <label><Msg phrase="Account" /></label>
                       <Select2 
                         style={{width: '100%'}} 
                         className="select2"
@@ -136,7 +139,7 @@ export default class Transaction extends React.Component {
                   <div className="col-lg-6">
 
                     <div className="form-group">
-                      <label>Credit card</label>
+                      <label><Msg phrase="Credit card" /></label>
                       <Select2 
                         style={{width: '100%'}} 
                         className="select2"
@@ -153,16 +156,22 @@ export default class Transaction extends React.Component {
                   </div>
                   <div className="col-lg-6">
                     <div className="row">
-                      <div className="col-lg-6">
+                      <div className="col-lg-4">
                         <div className="form-group">
-                          <label >Repeat</label>
+                          <label ><Msg phrase="Repeat" /></label>
                           <input type="text" className="form-control" placeholder="Repeat" />
                         </div>
                       </div>
-
-                      <div className="col-lg-6">
+                      <div className="col-lg-4">
                         <div className="form-group">
-                          <label>Period</label>
+                          <label ><Msg phrase="Quantity" /></label>
+                          <input type="text" className="form-control" placeholder="Quantity" />
+                        </div>
+                      </div>
+
+                      <div className="col-lg-4">
+                        <div className="form-group">
+                          <label><Msg phrase="Period" /></label>
                           <Select2 
                             style={{width: '100%'}} 
                             className="select2"
@@ -184,7 +193,7 @@ export default class Transaction extends React.Component {
                   <div className="col-lg-6">
                     <div className="checkbox">
                       <label>
-                        <input type="checkbox" /> Paid
+                        <input type="checkbox" /> <Msg phrase="Paid" />
                       </label>
                     </div>
 
@@ -195,7 +204,8 @@ export default class Transaction extends React.Component {
               </div>
 
               <div className="box-footer">
-                <button type="submit" className="btn btn-primary">Save</button>
+                <button className="btn btn-default" style={{marginRight: 5 }}><i className="fa fa-mail-reply"></i> <Msg phrase="Cancel" /></button>
+                <button type="submit" className="btn btn-primary"><i className="fa fa-save"></i> <Msg phrase="Save" /></button>
               </div>
             </form>
         </div>

@@ -1,15 +1,22 @@
+import Cards from './containers/Cards';
 import Card from './containers/Card';
 
 export default {
-	child_routes:[
+	title: 'Credit cards',
+	menu_name: 'Credit cards',
+	icon: 'fa-credit-card',
+	path: '/cards',
+	component: Cards,
+	public: false,
+	layout_name: 'layout',
+	child_routes: [
 		{
-			title: 'Credit cards',
-			menu_name: 'Credit cards',
+			title: 'Credit card',
 			icon: 'fa-credit-card',
-			path: '/cards',
+			path: '/card',
 			component: Card,
 			public: false,
-			layout_name: 'layout',
-		 }
+			layout_name: 'layout'
+		}
 	]
 }

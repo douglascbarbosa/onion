@@ -29,7 +29,7 @@ export default class NavGroupItem extends React.Component {
 
   renderChild(child_routes){
     return child_routes.map((route) => {
-      if (!route.public){
+      if (!route.public && route.menu_name){
       	this.paths.push(route.path);
         return this.renderRouterLink(route)
       }else{
