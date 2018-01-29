@@ -5,8 +5,9 @@ import {Checkbox} from 'react-icheck';
 export default class ICheck extends React.Component {
   render() {
     return (
-
-		<Checkbox {...this.props} />
+      <div className="checkbox icheck">
+		    <Checkbox {...this.props} />
+      </div>  
     )
   }
 }

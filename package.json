@@ -8,6 +8,7 @@
     "create-react-class": "^15.6.2",
     "datatables": "^1.10.13",
     "datatables.net-bs": "^1.10.16",
+    "firebase": "^4.9.0",
     "history": "^4.7.2",
     "icheck": "^1.0.2",
     "jquery": "^3.2.1",
