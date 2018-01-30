@@ -1,14 +1,17 @@
 import React from 'react'
+import {connect} from 'react-redux'
+import gravatar from 'gravatar'
 
-export default class LoginInfo extends React.Component {
+class LoginInfo extends React.Component {
+ 
   render() {
     return (
       <div className="user-panel">
         <div className="pull-left image">
-          <img src="../../assets/img/avatar04.png" className="img-circle" alt="User Image" />
+          <img src={gravatar.url(this.props.email)} className="img-circle" alt="User Image" />
         </div>
         <div className="pull-left info">
-          <p>Douglas Carlos</p>
+          <p>{this.props.username}</p>
         </div>
       </div>
 
@@ -16,3 +19,6 @@ export default class LoginInfo extends React.Component {
   }
 }
 
+const mapStateToProps = (state)=>(state.user)
+
+export default connect(mapStateToProps)(LoginInfo);

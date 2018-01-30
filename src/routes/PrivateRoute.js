@@ -1,7 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { Route, Redirect } from 'react-router-dom';
-//import Layout from '../components/common/Layout';
 
 export const PrivateRoute = ({
   isAuthenticated,
@@ -10,7 +9,7 @@ export const PrivateRoute = ({
   ...rest
 }) => (
     <Route {...rest} component={(props) => (
-      true ? (
+      isAuthenticated ? (
         <Layout>
           <Component {...props} />
         </Layout>
@@ -20,10 +19,10 @@ export const PrivateRoute = ({
     )} />
   );
 
-// const mapStateToProps = (state) => ({
-//   isAuthenticated: !!state.auth.uid
-// });
+const mapStateToProps = ({user}) => ({
+  isAuthenticated: !!user.uid
+});
 
-//export default connect(mapStateToProps)(PrivateRoute);
+export default connect(mapStateToProps)(PrivateRoute);
 
-export default PrivateRoute;
+//export default PrivateRoute;

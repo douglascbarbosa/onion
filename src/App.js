@@ -1,6 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 //import { createBrowserHistory } from 'history';
+import { firebase } from './firebase/firebase';
 
 import {Provider} from 'react-redux'
 

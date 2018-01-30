@@ -1,10 +1,23 @@
 import React from 'react'
 import {Link} from 'react-router-dom'
-import ICheck from '../../../components/forms/common/ICheck'
-import {Glyphicon} from 'react-bootstrap'
+import { Field, reduxForm } from 'redux-form';
+import { connect } from 'react-redux';
 
-export default class Register extends React.Component {
+import { registerUser } from '../../../components/user/UserActions';
+import Input from '../../../components/forms/inputs/Input';
+import ICheck from '../../../components/forms/inputs/ICheck';
+import AlertMessage, {ALERT_MSG_ERROR} from '../../../components/common/AlertMessage';
+
+class Register extends React.Component {
+  
+  onSubmit(values){
+		this.props.registerUser(values);
+	}
+  
   render() {
+
+    const { handleSubmit, loading, msgError } = this.props;    
+
     return (
 
 
@@ -16,37 +29,48 @@ export default class Register extends React.Component {
         <div className="register-box-body">
           <p className="login-box-msg">Register a new membership</p>
 
-          <form action="../../index.html" method="post">
-            <div className="form-group has-feedback">
-              <input type="text" className="form-control" placeholder="Full name" />
-              <span className="glyphicon glyphicon-user form-control-feedback"></span>
-            </div>
-            <div className="form-group has-feedback">
-              <input type="email" className="form-control" placeholder="Email" />
-              <span className="glyphicon glyphicon-envelope form-control-feedback"></span>
-            </div>
-            <div className="form-group has-feedback">
-              <input type="password" className="form-control" placeholder="Password" />
-              <span className="glyphicon glyphicon-lock form-control-feedback"></span>
-            </div>
-            <div className="form-group has-feedback">
-              <input type="password" className="form-control" placeholder="Retype password" />
-              <span className="glyphicon glyphicon-log-in form-control-feedback"></span>
-            </div>
+          <AlertMessage message={msgError} type={ALERT_MSG_ERROR} />
+
+          <form onSubmit={handleSubmit(this.onSubmit.bind(this))}  >
+
+              <Field 
+                type="text"
+                name="name"  
+                component={Input}
+                icon="fa-user"
+                placeholder="Full name"
+              />
+
+              <Field 
+                type="text"
+                name="email"  
+                component={Input}
+                icon="fa-envelope"
+                placeholder="E-mail"
+              />
+
+              <Field 
+                type="password"
+                name="password"  
+                component={Input}
+                icon="fa-lock"
+                placeholder="Password"
+              />
+
             <div className="row">
               <div className="col-xs-8">
-                <div className="checkbox icheck">
-                  <ICheck
-                    checkboxClass="icheckbox_square-blue"
-                    increaseArea="20%"
-                    label=" I agree to the <a href='#'>terms</a>"
-                  />                    
-
-                </div>
               </div>
 
               <div className="col-xs-4">
-                <button type="submit" className="btn btn-primary btn-block btn-flat">Register</button>
+
+                <button 
+                  type="submit" 
+                  className="btn btn-primary"
+                  disabled={this.props.loading}
+                >
+                  {this.props.loading ? 'Registing...': 'Register'}
+                </button>                                                                        
+              
               </div>
 
             </div>
@@ -65,4 +89,45 @@ export default class Register extends React.Component {
     )
   }
 }
+
+function validate(values){
+
+  const errors={};
+
+  if (!values.name){
+    errors.name = "Please enter your name";
+  }
+
+
+  if (!values.email){
+    errors.email = "Please enter your email address";
+  }
+  // else if ( ! Functions.isEmailValid( values.email)){
+  //     errors.email = "E-mail inválido";
+  // }
+
+  if (!values.password){
+      errors.password = "Please enter your password";
+  }else if (values.password.length < 6){
+    errors.password = "Password should be at least 6 characters";
+  }
+
+  // if errors is empty, the form is fine to submit
+  return errors;
+
+}
+
+function mapStateToProps({user}){
+  const { loading, error } = user;
+
+  return { loading, msgError : error };
+}
+
+export default reduxForm({
+  validate,
+  form: 'RegisterForm'
+})(
+  connect(mapStateToProps,{registerUser})(Register)
+);
+
 

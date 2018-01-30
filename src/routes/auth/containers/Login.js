@@ -7,6 +7,7 @@ import { loginUser } from '../../../components/user/UserActions';
 import ICheck from '../../../components/forms/inputs/ICheck'
 import Msg from '../../../components/i18n/Msg';
 import Input from '../../../components/forms/inputs/Input';
+import AlertMessage, {ALERT_MSG_ERROR} from '../../../components/common/AlertMessage';
 
 
 class Login extends React.Component {
@@ -17,7 +18,7 @@ class Login extends React.Component {
 
   render() {
 
-    const { handleSubmit } = this.props;    
+    const { handleSubmit, msgError } = this.props;    
     
     return (
 
@@ -28,6 +29,8 @@ class Login extends React.Component {
           </div>
           <div className="login-box-body">
             <p className="login-box-msg"><Msg phrase="Sign in to start your session" /></p>
+
+            <AlertMessage message={msgError} type={ALERT_MSG_ERROR} />
 
             <form onSubmit={handleSubmit(this.onSubmit.bind(this))}>
 
@@ -59,14 +62,22 @@ class Login extends React.Component {
                     />
                 </div>
                 <div className="col-xs-4">
-                  <button type="submit" className="btn btn-primary btn-block btn-flat"><Msg phrase="Sign In" /></button>
+
+                <button 
+                  type="submit" 
+                  className="btn btn-primary"
+                  disabled={this.props.loading}
+                >
+                  {this.props.loading ? 'Loading...': 'Sign in'}
+                </button>                                                                        
+                
+                  {/*<button type="submit" className="btn btn-primary btn-block btn-flat"><Msg phrase="Sign In" /></button>*/}
                 </div>
               </div>
             </form>
 
-            <a href="#">I forgot my password</a><br/>
-            <Link className="text-center" to='/register'>Register a new membership</Link>
-
+            <a href="#"><Msg phrase="I forgot my password" /></a><br/>
+            <Link className="text-center" to='/register'><Msg phrase="Register a new membership" /></Link>
 
           </div>
         </div>
@@ -74,7 +85,6 @@ class Login extends React.Component {
     )
   }
 }
-
 
 function validate(values){
 
@@ -97,7 +107,10 @@ function validate(values){
 }
 
 function mapStateToProps({user}){
-	return { user };
+  const { loading, error } = user;
+
+  return { loading, msgError : error };
+
 }
 
 export default reduxForm({
