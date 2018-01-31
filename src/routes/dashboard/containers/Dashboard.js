@@ -6,7 +6,6 @@ export default class Dashboard extends React.Component {
   render() {
     return (
     	<div>
-				<AlertMessage message="Testing the alert message" type={ALERT_MSG_ERROR} />
     	</div>
 
     )

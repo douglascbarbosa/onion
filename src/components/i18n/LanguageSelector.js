@@ -21,27 +21,27 @@ export default class LanguageSelector extends Reflux.Component{
         let language = this.state.language;
         if(!this.state.language) return <div/>
         return (
-                <li className="dropdown messages-menu">
+            <li className="dropdown messages-menu">
 
-                    <a href="#" className="dropdown-toggle" data-toggle="dropdown">
-                        <FlagIcon code={language.key}/>
-                        <span>&nbsp;{language.title}&nbsp;</span>
-                    </a>
+                <a href="#" className="dropdown-toggle" data-toggle="dropdown">
+                    <FlagIcon code={language.key}/>
+                    <span>&nbsp;{language.title}&nbsp;</span>
+                </a>
 
-                    <ul className="dropdown-menu pull-right">
-                        {languages.map((_lang, idx)=>{
-                            return (
-                                <li key={idx} className={classnames({
-                                    active: _lang.key == language.key
-                                })}>
-                                    <a href="#" onClick={this._selectLanguage.bind(this, _lang)} >
-                                        <FlagIcon code={_lang.key}  /> {_lang.title}
-                                    </a>
-                                </li>
-                            )
-                        })}
-                    </ul>
-                </li>
+                <ul className="dropdown-menu pull-right">
+                    {languages.map((_lang, idx)=>{
+                        return (
+                            <li key={idx} className={classnames({
+                                active: _lang.key == language.key
+                            })}>
+                                <a href="#" onClick={this._selectLanguage.bind(this, _lang)} >
+                                    <FlagIcon code={_lang.key}  /> {_lang.title}
+                                </a>
+                            </li>
+                        )
+                    })}
+                </ul>
+            </li>
         )
     }
     _selectLanguage(language){

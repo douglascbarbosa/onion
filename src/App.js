@@ -1,28 +1,34 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-//import { createBrowserHistory } from 'history';
 import { firebase } from './firebase/firebase';
-
 import {Provider} from 'react-redux'
-
-//import { BrowserRouter, Router, Route, Switch, Redirect } from 'react-router-dom';
-//import Layout from './components/common/Layout.js';
-
-//import Dashboard from './routes/dashboard/containers/Dashboard';
-
 import registerServiceWorker from './registerServiceWorker';
-//import {syncHistoryWithStore} from 'react-router-redux'
 import store from './store/configureStore'
-
 import AppRouter from './routes/AppRouter';
 
-//const history = syncHistoryWithStore(createBrowserHistory(), store);
+import LoadingPage from './components/common/LoadingPage';
+import AppStorage, {ONION_STR_LOGIN} from './components/utils/AppStorage';
+import {tryRecoverLoginSession} from './components/user/UserActions';
 
-//const routeComponents = routes.map(({path, component}, key) => <Route exact path={path} component={component} key={key} />);	
+let hasRendered = false;
 
-ReactDOM.render( (
-	<Provider store={store}>
-		<AppRouter />
-	</Provider>
-), document.getElementById('root'));
+const renderApp = () => {
+	if (!hasRendered) {
+
+		ReactDOM.render( (
+			<Provider store={store}>
+				<AppRouter />
+			</Provider>
+		), document.getElementById('root'));
+	  
+	  hasRendered = true;
+	}
+  };
+
+ReactDOM.render(<LoadingPage show />, document.getElementById('root'));
+
+tryRecoverLoginSession(renderApp, store.dispatch);
+
 registerServiceWorker();
+	
+

@@ -25,10 +25,10 @@ class AppStorage {
 	}
 
 	clearValue(key){
-		this.store[key] = '';
+		this.store[key] = null;
 		localStorage.setItem(ONION_STORAGE, JSON.stringify(this.store));
 	}
 
 }
 
-export default AppStorage;
+export default new AppStorage;
