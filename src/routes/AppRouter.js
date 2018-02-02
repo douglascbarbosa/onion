@@ -6,6 +6,7 @@ import history from './History';
 
 import Layout from '../components/common/Layout';
 import Layout_blank from '../components/common/Layout_blank';
+import Layout_register from '../components/common/Layout_register'
 
 import PrivateRoute from './PrivateRoute';
 import PublicRoute from './PublicRoute';
@@ -16,6 +17,7 @@ import routes from './';
 const layouts = [];
 layouts['layout'] = Layout;
 layouts['layout_blank'] = Layout_blank;
+layouts['layout_register'] = Layout_register;
 
 //export const history = createBrowserHistory();
 

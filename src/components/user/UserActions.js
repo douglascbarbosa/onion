@@ -82,7 +82,7 @@ export const registerUser = (values) => {
     }
 }
 
-const loginUserSuccess = (dispatch, user, keepLoginInfo = false) => {
+const loginUserSuccess = (dispatch, user, keepLoginInfo = false, pathname = '/dashboard') => {
 
     //Store the user info to keep the user session!
     if (keepLoginInfo){
@@ -94,7 +94,7 @@ const loginUserSuccess = (dispatch, user, keepLoginInfo = false) => {
         payload: user
     });
 
-    history.push('/dashboard');
+    history.push(pathname);
 
 };  
 
@@ -112,6 +112,7 @@ const registerUserFail = (dispatch, error) => {
  * @param {function} dispatch //Function to dispatch info to store
  */
 export const tryRecoverLoginSession = (renderApp, dispatch) => {
+    const pathname = window.location.pathname;
     const userInfo = AppStorage.getValue(ONION_STR_LOGIN);
 
     if (userInfo !== null){
@@ -122,7 +123,7 @@ export const tryRecoverLoginSession = (renderApp, dispatch) => {
                 //Render the app!
                 renderApp();
                
-                loginUserSuccess(dispatch, userInfo, true);
+                loginUserSuccess(dispatch, userInfo, true, pathname);
                 
             }
                 

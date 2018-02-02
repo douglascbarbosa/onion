@@ -1,3 +1,4 @@
+import accountReducer from './accountReducer'
 import Accounts from './containers/Accounts';
 import Account from './containers/Account';
 
@@ -16,7 +17,11 @@ export default {
 			path: '/account',
 			component: Account,
 			public: false,
-			layout_name: 'layout'
+			layout_name: 'layout_register'
 		}
 	]
 }
+
+export {accountReducer}
+
+export * from './AccountActions'
