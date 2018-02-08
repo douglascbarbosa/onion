@@ -6,68 +6,70 @@ import Msg from '../../../components/i18n/Msg'
 //import CurrencyInput from 'react-currency-input'
 import {CurrencyInput, Input} from '../../../components/forms/inputs'
 import { new_account } from '../AccountActions';
+import Form from '../../../components/forms/Form';
 
 class Account extends React.Component {
+
+  onSubmit(values){
+    console.log(values);
+  }
+
   render() {
+    const { handleSubmit } = this.props;      
     return (
-               
-      <div className="row">
 
-        <div className="col-lg-6">
+      <Form title="New Account" onSubmit={handleSubmit(this.onSubmit.bind(this))}>
+            <div className="col-lg-6">
 
-          <Field 
-            type="text"
-            name="name"  
-            component={Input}
-            label="Account name"
-          />
+              <Field 
+                type="text"
+                name="name"  
+                component={Input}
+                label="Account name"
+              />
 
-        </div>  
+            </div>  
 
-        <div className="col-lg-6">
+            <div className="col-lg-6">
 
-          <Field 
-            type="text"
-            name="initialValue"
-            component={CurrencyInput}
-            label="Initial value"
-        
-          />
+              <Field 
+                type="text"
+                name="initialValue"
+                component={CurrencyInput}
+                label="Initial value"
+            
+              />
 
-        </div>
+            </div>
 
-      </div>
-
+      </Form>
     )
   }
 }
 
 function validate(values){
+
   const errors={};
 
   if (!values.name){
-    errors.name = "Please enter your name";
+    errors.name = "Please enter the account name";
   }
 
-
-  if (!values.email){
-    errors.email = "Please enter your email address";
-  }
-  // else if ( ! Functions.isEmailValid( values.email)){
-  //     errors.email = "E-mail inválido";
-  // }
-
-  if (!values.password){
-      errors.password = "Please enter your password";
-  }else if (values.password.length < 6){
-    errors.password = "Password should be at least 6 characters";
-  }
-
-  // if errors is empty, the form is fine to submit
   return errors;
-
 }
 
-export default connect(null, {new_account})(Account);
+function mapStateToProps({user}){
+  const { loading, error } = user;
+
+  return { loading, msgError : error };
+}
+
+export default reduxForm({
+  validate,
+  form: 'AccountForm'
+})(
+  connect(mapStateToProps, {new_account})(Account)
+);
+
 
 

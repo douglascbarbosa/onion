@@ -17,7 +17,7 @@ export default {
 			path: '/account',
 			component: Account,
 			public: false,
-			layout_name: 'layout_register'
+			layout_name: 'layout'
 		}
 	]
 }

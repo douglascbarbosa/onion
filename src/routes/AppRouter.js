@@ -17,7 +17,6 @@ import routes from './';
 const layouts = [];
 layouts['layout'] = Layout;
 layouts['layout_blank'] = Layout_blank;
-layouts['layout_register'] = Layout_register;
 
 //export const history = createBrowserHistory();
 
