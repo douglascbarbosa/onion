@@ -1,12 +1,18 @@
 import React from 'react'
+import {connect} from 'react-redux'
 import Datatable from '../../../components/tables/Datatable'
 import ActionButton from '../../../components/common/ActionButton'
 import history from '../../../routes/History'
 import {Redirect} from 'react-router-dom'
 import Msg from '../../../components/i18n/Msg'
+import {fetch_account} from '../AccountActions'
 
-export default class Accounts extends React.Component {
-  
+class Accounts extends React.Component {
+
+  componentDidMount(){
+    this.props.fetch_account();
+  }
+
   handleNewClick(){
     //Redirect to account!
     history.push('/account'); 
@@ -97,3 +103,4 @@ export default class Accounts extends React.Component {
   }
 }
 
+export default connect(null, {fetch_account})(Accounts);

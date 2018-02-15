@@ -1,6 +1,7 @@
 import React from 'react'
 import Msg from '../../i18n/Msg';
-import CurrencyInput from 'react-currency-input'
+import CurrencyInput from 'react-currency-input';
+import NumberFormat from 'react-number-format';
 
 const Input = (field) => {
 
@@ -17,10 +18,22 @@ const Input = (field) => {
           }
         <div className="input-group">
             <div className="input-group-addon">
-                <i className="fa fa-money"></i>
+                {/* <i className="fa fa-money"></i> */}
+                R$ 
             </div>
-         
-            <CurrencyInput 
+
+
+            <NumberFormat 
+                type={field.type}
+                thousandSeparator = "."
+                decimalSeparator=","
+                decimalScale={2}
+                className="form-control"
+                placeholder={field.placeholder}   
+                {...field.input}
+                {...field}                
+            />
+            {/* <CurrencyInput 
                 type={field.type}
                 prefix="R$"
                 decimalSeparator="," 
@@ -29,7 +42,8 @@ const Input = (field) => {
                 placeholder={field.placeholder}   
                 {...field.input}
                 {...field}
-            />
+            /> */}
+
             {icon ? <i className={'fa form-control-feedback ' + icon}></i> : null}
             <span className="help-block">{touched ? <Msg phrase={error} /> : ''}</span>
           </div>

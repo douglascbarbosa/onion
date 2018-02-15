@@ -11,7 +11,7 @@ import Form from '../../../components/forms/Form';
 class Account extends React.Component {
 
   onSubmit(values){
-    console.log(values);
+    this.props.new_account(values);
   }
 
   render() {
@@ -37,7 +37,6 @@ class Account extends React.Component {
                 name="initialValue"
                 component={CurrencyInput}
                 label="Initial value"
-            
               />
 
             </div>

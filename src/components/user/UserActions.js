@@ -122,7 +122,6 @@ export const tryRecoverLoginSession = (renderApp, dispatch) => {
             if (user) {
                 //Render the app!
                 renderApp();
-               
                 loginUserSuccess(dispatch, userInfo, true, pathname);
                 
             }
