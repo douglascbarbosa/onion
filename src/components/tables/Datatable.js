@@ -6,6 +6,11 @@ export default class Datatable extends React.Component {
     this.datatable();
   }
 
+  componentDidUpdate(){
+    // console.log(this._dataTable.data());
+    this._dataTable.draw();
+  }
+
   datatable() {
 
     //Create the datatable element!
@@ -15,7 +20,7 @@ export default class Datatable extends React.Component {
     let {options} = {...this.props} || {};
 
     //Creating the Datatable element object!
-    const _dataTable = element.DataTable(options);
+    this._dataTable = element.DataTable(options);
 
   }
 

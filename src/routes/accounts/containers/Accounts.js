@@ -9,7 +9,7 @@ import {fetch_account} from '../AccountActions'
 
 class Accounts extends React.Component {
 
-  componentDidMount(){
+  componentWillMount(){
     this.props.fetch_account();
   }
 
@@ -19,60 +19,13 @@ class Accounts extends React.Component {
   }
 
   render() {
-
-    //@TODO - take information by store!
-    let data = [
-        {"account_name" : 'Teste', "account_value" : 10000},
-        {"account_name" : 'Teste2', "account_value" : 10},
-        {"account_name" : 'Teste', "account_value" : 10000},
-        {"account_name" : 'Teste', "account_value" : 10000},
-        {"account_name" : 'Teste', "account_value" : 10000},
-        {"account_name" : 'Teste', "account_value" : 10000},
-        {"account_name" : 'Teste', "account_value" : 10000},
-        {"account_name" : 'Teste', "account_value" : 10000},
-        {"account_name" : 'Teste', "account_value" : 10000},
-        {"account_name" : 'Teste', "account_value" : 10000},
-        {"account_name" : 'Teste', "account_value" : 10000},
-        {"account_name" : 'Teste', "account_value" : 10000},
-        {"account_name" : 'Teste', "account_value" : 10000},
-        {"account_name" : 'Teste', "account_value" : 10000},
-        {"account_name" : 'Teste', "account_value" : 10000},
-        {"account_name" : 'Teste', "account_value" : 10000},
-        {"account_name" : 'Teste', "account_value" : 10000},
-        {"account_name" : 'Teste', "account_value" : 10000},
-        {"account_name" : 'Teste', "account_value" : 10000},
-        {"account_name" : 'Teste', "account_value" : 10000},
-        {"account_name" : 'Teste', "account_value" : 10000},
-        {"account_name" : 'Teste', "account_value" : 10000},
-        {"account_name" : 'Teste', "account_value" : 10000},
-        {"account_name" : 'Teste', "account_value" : 10000},
-        {"account_name" : 'Teste', "account_value" : 10000},
-        {"account_name" : 'Teste', "account_value" : 10000},
-        {"account_name" : 'Teste', "account_value" : 10000},
-        {"account_name" : 'Teste', "account_value" : 10000},
-        {"account_name" : 'Teste', "account_value" : 10000},
-        {"account_name" : 'Teste', "account_value" : 10000},
-        {"account_name" : 'Teste', "account_value" : 10000},
-        {"account_name" : 'Teste', "account_value" : 10000},
-        {"account_name" : 'Teste', "account_value" : 10000},
-        {"account_name" : 'Teste', "account_value" : 10000},
-        {"account_name" : 'Teste', "account_value" : 10000},
-        {"account_name" : 'Teste', "account_value" : 10000},
-        {"account_name" : 'Teste', "account_value" : 10000},
-        {"account_name" : 'Teste', "account_value" : 10000},
-        {"account_name" : 'Teste', "account_value" : 10000},
-        {"account_name" : 'Teste', "account_value" : 10000},
-        {"account_name" : 'Teste', "account_value" : 10000},
-        {"account_name" : 'Teste', "account_value" : 10000},
-        {"account_name" : 'Teste', "account_value" : 10000},
-        {"account_name" : 'Teste', "account_value" : 10000},
-    ]
-
+    console.log(this.props.list.length);
+    if (this.props.list.length > 0){
     let options = {
-      "data": data,
+      "data": this.props.list,
       "columns": [
-          {"data": "account_name"},
-          {"data": "account_value"}
+          {"data": "name"},
+          {"data": "initialValue"}
       ],
       "order": [[1, 'desc']]
     }
@@ -100,7 +53,14 @@ class Accounts extends React.Component {
         </div>
       </div>
     )
+  }else{
+    return null
+  }
   }
 }
 
-export default connect(null, {fetch_account})(Accounts);
+function mapStateToProps({account}){
+  return {...account}
+}
+
+export default connect(mapStateToProps, {fetch_account})(Accounts);

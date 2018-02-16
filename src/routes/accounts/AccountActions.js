@@ -29,6 +29,19 @@ export const new_account = (values) =>{
 
 export const fetch_account = () => {
     return (dispatch, getState ) => {
-        console.log(getState().user.uid);
+        return database.ref(`/users/${getState().user.uid}/Accounts`).once('value').then(snapshot => {
+            const accounts = [];    
+
+            snapshot.forEach(childSnapshot => {
+                accounts.push({
+                    id: childSnapshot.key,
+                    ...childSnapshot.val()
+                });
+            });
+          dispatch({
+              type: ACCOUNT_FETCH,
+              accounts
+          })  
+        });
     }
 } 
