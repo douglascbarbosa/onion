@@ -7,7 +7,11 @@ export default class Datatable extends React.Component {
   }
 
   componentDidUpdate(){
-    // console.log(this._dataTable.data());
+//     console.log(window.$(this._dataTable).DataTable());
+    //this._dataTable.draw();
+    //window.$(this._dataTable).DataTable().clear();
+    this._dataTable.clear();
+    this._dataTable.rows.add(this.props.options.data);
     this._dataTable.draw();
   }
 

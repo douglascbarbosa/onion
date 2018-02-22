@@ -19,8 +19,8 @@ class Accounts extends React.Component {
   }
 
   render() {
-    console.log(this.props.list.length);
-    if (this.props.list.length > 0){
+//    console.log(this.props.list.length);
+//    if (this.props.list.length > 0){
     let options = {
       "data": this.props.list,
       "columns": [
@@ -53,9 +53,9 @@ class Accounts extends React.Component {
         </div>
       </div>
     )
-  }else{
-    return null
-  }
+  // }else{
+  //   return null
+  // }
   }
 }
 
