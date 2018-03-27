@@ -18,7 +18,16 @@ export default {
 			component: Account,
 			public: false,
 			layout_name: 'layout'
+		},
+		{
+			title: 'Account',
+			icon: 'fa-university',
+			path: '/editaccount/:id',
+			component: Account,
+			public: false,
+			layout_name: 'layout'
 		}
+		
 	]
 }
 
