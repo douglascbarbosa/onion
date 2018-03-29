@@ -6,6 +6,11 @@ import history from '../../../routes/History'
 import {Redirect} from 'react-router-dom'
 import Msg from '../../../components/i18n/Msg'
 import {fetch_account} from '../AccountActions'
+import {Link} from 'react-router-dom'
+
+function redirectTeste(id){
+  alert(id);
+}
 
 class Accounts extends React.Component {
 
@@ -18,6 +23,10 @@ class Accounts extends React.Component {
     history.push('/account'); 
   }
 
+  handleEditClick( id ){
+    history.push('/account'); 
+  }
+
   render() {
 //    console.log(this.props.list.length);
 //    if (this.props.list.length > 0){
@@ -27,7 +36,16 @@ class Accounts extends React.Component {
           {"data": "name"},
           {"data": "initialValue"}
       ],
-      "order": [[1, 'desc']]
+      "order": [[1, 'desc']],
+      "aoColumnDefs" : [
+        {
+          "aTargets": [2],
+          "mData" : null,
+          "mRender" : function (data, type, full){
+            return '<a href="#" onclick="redirectTeste(\''+ full.id +'\');">Edit</a>';
+          }
+        }
+      ]
     }
 
     return (
@@ -45,6 +63,7 @@ class Accounts extends React.Component {
                         <tr>
                             <th><Msg phrase="Name" /></th>
                             <th>Value</th>
+                            <th>Actions</th>
                         </tr>
                     </thead>
                 </Datatable>
