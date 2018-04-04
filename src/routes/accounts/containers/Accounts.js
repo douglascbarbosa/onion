@@ -1,21 +1,18 @@
 import React from 'react'
 import {connect} from 'react-redux'
-import Datatable from '../../../components/tables/Datatable'
+//import Datatable from '../../../components/tables/Datatable'
+import DatatableList from '../../../components/tables/DatatableList'
 import ActionButton from '../../../components/common/ActionButton'
 import history from '../../../routes/History'
 import {Redirect} from 'react-router-dom'
 import Msg from '../../../components/i18n/Msg'
-import {fetch_account} from '../AccountActions'
+import {fetch_accounts} from '../AccountActions'
 import {Link} from 'react-router-dom'
-
-function redirectTeste(id){
-  alert(id);
-}
 
 class Accounts extends React.Component {
 
   componentWillMount(){
-    this.props.fetch_account();
+    this.props.fetch_accounts();
   }
 
   handleNewClick(){
@@ -23,13 +20,13 @@ class Accounts extends React.Component {
     history.push('/account'); 
   }
 
-  handleEditClick( id ){
-    history.push('/account'); 
+
+  handleDelete(id){
+    console.log(id);
   }
 
   render() {
-//    console.log(this.props.list.length);
-//    if (this.props.list.length > 0){
+
     let options = {
       "data": this.props.list,
       "columns": [
@@ -37,15 +34,7 @@ class Accounts extends React.Component {
           {"data": "initialValue"}
       ],
       "order": [[1, 'desc']],
-      "aoColumnDefs" : [
-        {
-          "aTargets": [2],
-          "mData" : null,
-          "mRender" : function (data, type, full){
-            return '<a href="#" onclick="redirectTeste(\''+ full.id +'\');">Edit</a>';
-          }
-        }
-      ]
+      
     }
 
     return (
@@ -58,23 +47,20 @@ class Accounts extends React.Component {
 
           <div className="box">
             <div className="box-body">
-                <Datatable options={options} className="table table-bordered table-hover">
+                <DatatableList id="accountsList" options={options} formroute="edit/account" deleteevent={this.handleDelete.bind(this)} >
                     <thead>
                         <tr>
                             <th><Msg phrase="Name" /></th>
-                            <th>Value</th>
-                            <th>Actions</th>
+                            <th><Msg phrase="Value" /></th>
+                            <th><Msg phrase="Actions" /></th>
                         </tr>
                     </thead>
-                </Datatable>
+                </DatatableList>
             </div>
           </div>
         </div>
       </div>
     )
-  // }else{
-  //   return null
-  // }
   }
 }
 
@@ -82,4 +68,4 @@ function mapStateToProps({account}){
   return {...account}
 }
 
-export default connect(mapStateToProps, {fetch_account})(Accounts);
+export default connect(mapStateToProps, {fetch_accounts})(Accounts);

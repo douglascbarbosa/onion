@@ -5,10 +5,19 @@ import ActionButtonGroup from '../../../components/common/ActionButtonGroup'
 import Msg from '../../../components/i18n/Msg'
 //import CurrencyInput from 'react-currency-input'
 import {CurrencyInput, Input} from '../../../components/forms/inputs'
-import { new_account } from '../AccountActions';
+import { new_account, fetch_account } from '../AccountActions';
 import Form from '../../../components/forms/Form';
 
 class Account extends React.Component {
+
+
+  componentWillMount(){
+
+    if (this.props.match.params.id){
+      this.props.fetch_account(this.props.match.params.id)
+    }
+
+  }
 
   onSubmit(values){
     this.props.new_account(values);
@@ -16,7 +25,6 @@ class Account extends React.Component {
 
   render() {
 
-    console.log(this.props.match.params.id);
     const { handleSubmit } = this.props;      
     return (
 
@@ -69,7 +77,7 @@ export default reduxForm({
   validate,
   form: 'AccountForm'
 })(
-  connect(mapStateToProps, {new_account})(Account)
+  connect(mapStateToProps, {new_account, fetch_account})(Account)
 );
 
 
