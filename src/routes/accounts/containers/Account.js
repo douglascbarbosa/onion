@@ -5,8 +5,11 @@ import ActionButtonGroup from '../../../components/common/ActionButtonGroup'
 import Msg from '../../../components/i18n/Msg'
 //import CurrencyInput from 'react-currency-input'
 import {CurrencyInput, Input} from '../../../components/forms/inputs'
-import { new_account, fetch_account } from '../AccountActions';
+import { new_account, update_account, fetch_account } from '../AccountActions';
 import Form from '../../../components/forms/Form';
+import AlertMessage, {ALERT_MSG_ERROR} from '../../../components/common/AlertMessage';
+
+
 
 class Account extends React.Component {
 
@@ -20,38 +23,51 @@ class Account extends React.Component {
   }
 
   onSubmit(values){
-    this.props.new_account(values);
+
+    if (this.props.match.params.id){
+      this.props.update_account(this.props.match.params.id, values)
+    }else{
+      this.props.new_account(values)
+    }  
+
   }
 
   render() {
 
     const { handleSubmit } = this.props;      
+
     return (
 
-      <Form title="New Account" onSubmit={handleSubmit(this.onSubmit.bind(this))}>
-            <div className="col-lg-6">
+      <div>
 
-              <Field 
-                type="text"
-                name="name"  
-                component={Input}
-                label="Account name"
-              />
+        <AlertMessage type={ALERT_MSG_ERROR} message={this.props.error} />
 
-            </div>  
+        <Form title="New Account" onSubmit={handleSubmit(this.onSubmit.bind(this))}>
+              <div className="col-lg-6">
 
-            <div className="col-lg-6">
+                <Field 
+                  type="text"
+                  name="name"  
+                  component={Input}
+                  label="Account name"
+                />
 
-              <Field 
-                type="text"
-                name="initialValue"
-                component={CurrencyInput}
-                label="Initial value"
-              />
+              </div>  
 
-            </div>
+              <div className="col-lg-6">
 
-      </Form>
+                <Field 
+                  type="text"
+                  name="initialValue"
+                  component={CurrencyInput}
+                  label="Initial value"
+                />
+
+              </div>
+
+        </Form>
+
+      </div>
     )
   }
 }
@@ -67,18 +83,15 @@ function validate(values){
   return errors;
 }
 
-function mapStateToProps({user}){
-  const { loading, error } = user;
-
-  return { loading, msgError : error };
+function mapStateToProps({account}){
+  return { error : account.error, enableReinitialize: true, initialValues: account.account };
 }
 
-export default reduxForm({
+Account = reduxForm({
   validate,
-  form: 'AccountForm'
-})(
-  connect(mapStateToProps, {new_account, fetch_account})(Account)
-);
+  form: 'account-form'
+})(Account)
 
+Account = connect(mapStateToProps, {new_account, update_account, fetch_account})(Account);
 
-
+export default Account;

@@ -8,6 +8,7 @@ import {Redirect} from 'react-router-dom'
 import Msg from '../../../components/i18n/Msg'
 import {fetch_accounts} from '../AccountActions'
 import {Link} from 'react-router-dom'
+import AlertMessage, {ALERT_MSG_ERROR} from '../../../components/common/AlertMessage';
 
 class Accounts extends React.Component {
 
@@ -47,6 +48,8 @@ class Accounts extends React.Component {
 
           <div className="box">
             <div className="box-body">
+                <AlertMessage type={ALERT_MSG_ERROR} message={this.props.listError} />
+
                 <DatatableList id="accountsList" options={options} formroute="edit/account" deleteevent={this.handleDelete.bind(this)} >
                     <thead>
                         <tr>
