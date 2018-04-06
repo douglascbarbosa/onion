@@ -47,19 +47,27 @@ export default class DatatableList extends React.Component{
 
     render(){
         const self = this;
-        
+
+
+        //Check if the user put the columnDefs in the options!
+        let columnDefs = [];
+
+        if (this.props.options.aoColumnDefs){
+            columnDefs = [...this.props.options.aoColumnDefs] 
+        }
+
+        columnDefs.push({
+            "aTargets": [2],
+            "mData" : null,
+            "mRender" : function (data, type, full){
+              return self.getActionsButtons(full);
+            }
+          });
+
         //Addding the button click handler!
         let listOptions = {
             ...this.props.options,
-            "aoColumnDefs" : [
-                {
-                  "aTargets": [2],
-                  "mData" : null,
-                  "mRender" : function (data, type, full){
-                    return self.getActionsButtons(full);
-                  }
-                }
-              ],            
+            "aoColumnDefs" : columnDefs,            
             "drawCallback": this.afterTableDraw.bind(this)
         }
         

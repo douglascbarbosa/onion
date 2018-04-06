@@ -3,15 +3,21 @@ import history from '../../routes/History';
 
 export const ACCOUNT_NEW        = 'ACCOUNT_NEW';
 export const ACCOUNT_UPDATE     = 'ACCOUNT_UPDATE';
+export const ACCOUNT_DELETE     = 'ACCOUNT_DELETE';
 export const ACCOUNT_FETCH_ALL  = 'ACCOUNT_FETCH_ALL';
 export const ACCOUNT_FETCH      = 'ACCOUNT_FETCH';
 export const ACCOUNT_NOT_FOUND  = 'ACCOUNT_NOT_FOUND';
 export const ACCOUNT_LIST_ERROR = 'ACCOUNT_LIST_ERROR';
 export const ACCOUNT_FORM_ERROR = 'ACCOUNT_FORM_ERROR';
+export const ACCOUNT_FORM_CLEAR = 'ACCOUNT_FORM_CLEAR';
+export const ACCOUNT_LAODING = 'ACCOUNT_LAODING';
 
 export const new_account = (values) =>{
 
     return (dispatch, getState) => {
+
+        dispatch({type: ACCOUNT_LAODING});
+
         const account = {
             name : values.name,
             initialValue : parseFloat(values.initialValue.replace('.', '').replace(',','.')).toFixed(2)
@@ -44,6 +50,9 @@ export const new_account = (values) =>{
 export const update_account = (id, values) => {
 
     return (dispatch, getState) => {
+
+        dispatch({type: ACCOUNT_LAODING});
+        
         const account = {
             name : values.name,
             initialValue : parseFloat(values.initialValue.replace('.', '').replace(',','.')).toFixed(2)
@@ -72,6 +81,30 @@ export const update_account = (id, values) => {
         });
         
     }    
+}
+
+export const delete_account = (id) => {
+
+    return (dispatch, getState) => {
+
+        return database.ref(`/users/${getState().user.uid}/Accounts/${id}`)
+            .remove()
+            .then(ref => {
+                dispatch({
+                    type: ACCOUNT_DELETE,
+                    id
+                });
+                
+        })
+        .catch(error => {
+            dispatch({
+                type: ACCOUNT_LIST_ERROR,
+                error : error.message
+            })
+        });
+        
+    }    
+
 }
 
 
@@ -129,4 +162,11 @@ export const fetch_account = (id) => {
             
         });
     }
+}
+
+export const clear_form_account = () => {
+    return (dispatch) => {
+        dispatch({type: ACCOUNT_FORM_CLEAR})
+    }
+
 }

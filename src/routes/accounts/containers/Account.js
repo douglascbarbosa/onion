@@ -5,14 +5,15 @@ import ActionButtonGroup from '../../../components/common/ActionButtonGroup'
 import Msg from '../../../components/i18n/Msg'
 //import CurrencyInput from 'react-currency-input'
 import {CurrencyInput, Input} from '../../../components/forms/inputs'
-import { new_account, update_account, fetch_account } from '../AccountActions';
+import { new_account, update_account, fetch_account, clear_form_account } from '../AccountActions';
 import Form from '../../../components/forms/Form';
 import AlertMessage, {ALERT_MSG_ERROR} from '../../../components/common/AlertMessage';
 
-
-
 class Account extends React.Component {
 
+  componentWillUnmount(){
+    this.props.clear_form_account();
+  }
 
   componentWillMount(){
 
@@ -55,7 +56,7 @@ class Account extends React.Component {
               </div>  
 
               <div className="col-lg-6">
-
+               
                 <Field 
                   type="text"
                   name="initialValue"
@@ -84,7 +85,7 @@ function validate(values){
 }
 
 function mapStateToProps({account}){
-  return { error : account.error, enableReinitialize: true, initialValues: account.account };
+  return { error : account.error, enableReinitialize: true, initialValues: account.account || {initialValue: '0,00'} };
 }
 
 Account = reduxForm({
@@ -92,6 +93,6 @@ Account = reduxForm({
   form: 'account-form'
 })(Account)
 
-Account = connect(mapStateToProps, {new_account, update_account, fetch_account})(Account);
+Account = connect(mapStateToProps, {new_account, update_account, fetch_account, clear_form_account})(Account);
 
 export default Account;

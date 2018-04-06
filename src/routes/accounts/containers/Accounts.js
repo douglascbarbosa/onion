@@ -6,9 +6,10 @@ import ActionButton from '../../../components/common/ActionButton'
 import history from '../../../routes/History'
 import {Redirect} from 'react-router-dom'
 import Msg from '../../../components/i18n/Msg'
-import {fetch_accounts} from '../AccountActions'
+import {fetch_accounts, delete_account} from '../AccountActions'
 import {Link} from 'react-router-dom'
-import AlertMessage, {ALERT_MSG_ERROR} from '../../../components/common/AlertMessage';
+import AlertMessage, {ALERT_MSG_ERROR, ALERT_MSG_SUCCESS} from '../../../components/common/AlertMessage';
+import Functions from '../../../components/utils/Functions';
 
 class Accounts extends React.Component {
 
@@ -23,7 +24,7 @@ class Accounts extends React.Component {
 
 
   handleDelete(id){
-    console.log(id);
+    this.props.delete_account(id);
   }
 
   render() {
@@ -34,7 +35,15 @@ class Accounts extends React.Component {
           {"data": "name"},
           {"data": "initialValue"}
       ],
-      "order": [[1, 'desc']],
+      "order": [[0, 'desc']],
+      "aoColumnDefs" : [{
+        "aTargets": [1],
+        "mData" : null,
+        "mRender" : function (data, type, full){
+          return Functions.floatToMoney(data);
+        }
+    
+      }]
       
     }
 
@@ -49,6 +58,7 @@ class Accounts extends React.Component {
           <div className="box">
             <div className="box-body">
                 <AlertMessage type={ALERT_MSG_ERROR} message={this.props.listError} />
+                <AlertMessage type={ALERT_MSG_SUCCESS} message={this.props.msg} />
 
                 <DatatableList id="accountsList" options={options} formroute="edit/account" deleteevent={this.handleDelete.bind(this)} >
                     <thead>
@@ -71,4 +81,4 @@ function mapStateToProps({account}){
   return {...account}
 }
 
-export default connect(mapStateToProps, {fetch_accounts})(Accounts);
+export default connect(mapStateToProps, {fetch_accounts, delete_account})(Accounts);
