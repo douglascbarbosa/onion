@@ -27,19 +27,17 @@ export default class DatatableList extends React.Component{
     
     onClickUpdateTable(obj){
         //Halde the edit button click!
-//        let $ = window.$;
-//        const id = $($(obj)[0].currentTarget).attr('data-id');
         history.push(`/${this.props.formroute}/${this.getObjDataId(obj)}`);
     }  
 
     getActionsButtons(data){
         let resultButtons = '';
         
-        resultButtons = `<button class="btn btn-primary update-id" data-id="${data.id}">Edit </button>`;
+        resultButtons = `<button class="btn btn-primary update-id" data-id="${data.id}"><i class="fa fa-pencil"></i></button>`;
 
         //If the delete handle was defined I'll add the delet button on the action column!
         if (this.props.deleteevent){
-            resultButtons += '<button class="btn btn-danger delete-id" data-id="'+ data.id +'">Delete </button>'
+            resultButtons += '<button class="btn btn-danger delete-id" data-id="'+ data.id +'" style="margin-left: 5px"><i class="fa fa-trash-o"></i></button>'
         }    
 
         return resultButtons;

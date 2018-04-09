@@ -1,16 +1,18 @@
 import database from '../../firebase/firebase';
 import history from '../../routes/History';
 
-export const ACCOUNT_NEW        = 'ACCOUNT_NEW';
-export const ACCOUNT_UPDATE     = 'ACCOUNT_UPDATE';
-export const ACCOUNT_DELETE     = 'ACCOUNT_DELETE';
-export const ACCOUNT_FETCH_ALL  = 'ACCOUNT_FETCH_ALL';
-export const ACCOUNT_FETCH      = 'ACCOUNT_FETCH';
-export const ACCOUNT_NOT_FOUND  = 'ACCOUNT_NOT_FOUND';
-export const ACCOUNT_LIST_ERROR = 'ACCOUNT_LIST_ERROR';
-export const ACCOUNT_FORM_ERROR = 'ACCOUNT_FORM_ERROR';
-export const ACCOUNT_FORM_CLEAR = 'ACCOUNT_FORM_CLEAR';
-export const ACCOUNT_LAODING = 'ACCOUNT_LAODING';
+export const ACCOUNT_NEW         = 'ACCOUNT_NEW';
+export const ACCOUNT_UPDATE      = 'ACCOUNT_UPDATE';
+export const ACCOUNT_DELETE      = 'ACCOUNT_DELETE';
+export const ACCOUNT_FETCH_ALL   = 'ACCOUNT_FETCH_ALL';
+export const ACCOUNT_FETCH       = 'ACCOUNT_FETCH';
+export const ACCOUNT_NOT_FOUND   = 'ACCOUNT_NOT_FOUND';
+export const ACCOUNT_LIST_ERROR  = 'ACCOUNT_LIST_ERROR';
+export const ACCOUNT_FORM_ERROR  = 'ACCOUNT_FORM_ERROR';
+export const ACCOUNT_FORM_CLEAR  = 'ACCOUNT_FORM_CLEAR';
+export const ACCOUNT_LAODING     = 'ACCOUNT_LAODING';
+export const ACCOUNT_CLEAR_MSG   = 'ACCOUNT_MSG';
+export const ACCOUNT_CLEAR_ERROR = 'ACCOUNT_ERROR';
 
 export const new_account = (values) =>{
 
@@ -140,7 +142,6 @@ export const fetch_account = (id) => {
                 });
                  
             }else{
-               
                 dispatch({
                     type: ACCOUNT_NOT_FOUND
                 });
@@ -169,4 +170,21 @@ export const clear_form_account = () => {
         dispatch({type: ACCOUNT_FORM_CLEAR})
     }
 
+}
+
+export const clear_message = (type) => {
+    return dispatch => {
+        console.log('limpando erro', type);
+
+        if (type === 'M'){
+            dispatch({
+                type: ACCOUNT_CLEAR_MSG
+            })
+        }else{
+            dispatch({
+                type: ACCOUNT_CLEAR_ERROR
+            })
+        }
+
+    }
 }

@@ -6,7 +6,7 @@ import ActionButton from '../../../components/common/ActionButton'
 import history from '../../../routes/History'
 import {Redirect} from 'react-router-dom'
 import Msg from '../../../components/i18n/Msg'
-import {fetch_accounts, delete_account} from '../AccountActions'
+import {fetch_accounts, delete_account, clear_message} from '../AccountActions'
 import {Link} from 'react-router-dom'
 import AlertMessage, {ALERT_MSG_ERROR, ALERT_MSG_SUCCESS} from '../../../components/common/AlertMessage';
 import Functions from '../../../components/utils/Functions';
@@ -25,6 +25,14 @@ class Accounts extends React.Component {
 
   handleDelete(id){
     this.props.delete_account(id);
+  }
+
+  onClearMsg(type){
+    if (type === ALERT_MSG_SUCCESS){
+      this.props.clear_message('M');
+    }else{
+      this.props.clear_message('E');
+    }
   }
 
   render() {
@@ -57,15 +65,15 @@ class Accounts extends React.Component {
 
           <div className="box">
             <div className="box-body">
-                <AlertMessage type={ALERT_MSG_ERROR} message={this.props.listError} />
-                <AlertMessage type={ALERT_MSG_SUCCESS} message={this.props.msg} />
+                <AlertMessage type={ALERT_MSG_ERROR} message={this.props.error} onClearMsg={this.onClearMsg.bind(this, ALERT_MSG_ERROR)} />
+                <AlertMessage type={ALERT_MSG_SUCCESS} message={this.props.msg} onClearMsg={this.onClearMsg.bind(this, ALERT_MSG_SUCCESS)} />
 
-                <DatatableList id="accountsList" options={options} formroute="edit/account" deleteevent={this.handleDelete.bind(this)} >
+                <DatatableList id="accountsList" options={options} formroute="edit/account" deleteevent={this.handleDelete.bind(this)}  >
                     <thead>
                         <tr>
                             <th><Msg phrase="Name" /></th>
-                            <th><Msg phrase="Value" /></th>
-                            <th><Msg phrase="Actions" /></th>
+                            <th style={{width: 200, textAlign: 'rigth'}} ><Msg phrase="Value" /></th>
+                            <th style={{width: 60}}><Msg phrase="Actions" /></th>
                         </tr>
                     </thead>
                 </DatatableList>
@@ -81,4 +89,4 @@ function mapStateToProps({account}){
   return {...account}
 }
 
-export default connect(mapStateToProps, {fetch_accounts, delete_account})(Accounts);
+export default connect(mapStateToProps, {fetch_accounts, delete_account, clear_message})(Accounts);

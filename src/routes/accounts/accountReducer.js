@@ -7,7 +7,9 @@ import {
     ACCOUNT_FORM_ERROR,
     ACCOUNT_UPDATE,
     ACCOUNT_DELETE,
-    ACCOUNT_FORM_CLEAR
+    ACCOUNT_FORM_CLEAR,
+    ACCOUNT_CLEAR_MSG,
+    ACCOUNT_CLEAR_ERROR
 
 } from './AccountActions';
 
@@ -18,7 +20,6 @@ const INITIAL_STATE = {
     list : [],
     msg: '',
     error: '',
-    listError: '',
     loading : false
 };
 
@@ -29,12 +30,12 @@ export default function accountReducer(state = INITIAL_STATE, action){
             return {...state, list : [
                     ...state.list,
                     action.account
-                   ], msg: 'Account successfully registered', error: '', listError : '', account : null}
+                   ], msg: 'Account successfully registered', error: '', account : null}
         case ACCOUNT_UPDATE:
             return {...state, list: [
                 ...state.list,
                 action.account
-            ], msg: 'Account updated successfully', error: '', listError: '', account : null}           
+            ], msg: 'Account updated successfully', error: '', account : null}           
         case ACCOUNT_DELETE:
             return {...state, msg : "Account deleted successfully", list: state.list.filter(e => e.id !== action.id), account : null}    
         case ACCOUNT_FETCH_ALL:
@@ -43,15 +44,17 @@ export default function accountReducer(state = INITIAL_STATE, action){
                 list : [...action.accounts]
             }
         case ACCOUNT_FETCH: 
-            return {...state, account : {...action.account, initialValue : Functions.floatTostr(action.account.initialValue)}, erro: '', listError : '' }
+            return {...state, account : {...action.account, initialValue : Functions.floatTostr(action.account.initialValue)}, erro: '' }
         case ACCOUNT_NOT_FOUND:
-            return {...state, listError: 'Account not found.'}
+            return {...state, error: 'Account not found.'}
         case ACCOUNT_FORM_ERROR:
             return {...state, error : action.error}
-        case ACCOUNT_NOT_FOUND:
-            return {...state, listError: action.error}
         case ACCOUNT_FORM_CLEAR:
             return {...state, account : null}    
+        case ACCOUNT_CLEAR_MSG:
+            return {...state, msg: ''}
+        case ACCOUNT_CLEAR_ERROR:    
+            return {...state, error: ''}
         default:
             return state;
     }
