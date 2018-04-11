@@ -1,6 +1,7 @@
 import Expenses from './containers/Expenses';
 import Income from './containers/Income';
 import Category from './containers/Category';
+import categoryReducer from './categoryReducer';
 
 export default {
 	menu_name: 'Categories',
@@ -36,3 +37,7 @@ export default {
 
 	]
 }
+
+export {categoryReducer}
+
+export * from './CategoryActions'

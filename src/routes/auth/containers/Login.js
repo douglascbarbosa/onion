@@ -24,8 +24,11 @@ class Login extends React.Component {
 
         <div className="login-box">
           <div className="login-logo">
-            <a href="../../index2.html"><b>Onion</b>PFT</a>
+            <a href="#">
+              <span className="login-logo-main" >Onion</span>
+              <span className="login-logo-sub" >Your personal finance controller</span>
 
+            </a>
           </div>
           <div className="login-box-body">
             <p className="login-box-msg"><Msg phrase="Sign in to start your session" /></p>

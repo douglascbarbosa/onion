@@ -1,60 +1,100 @@
 import React from 'react'
+import {connect} from 'react-redux'
+import { Field, reduxForm } from 'redux-form'
 import ActionButtonGroup from '../../../components/common/ActionButtonGroup'
 import Msg from '../../../components/i18n/Msg'
+//import CurrencyInput from 'react-currency-input'
+import {CurrencyInput, Input} from '../../../components/forms/inputs'
+//import { new_account, update_account, fetch_account, clear_form_account } from '../AccountActions';
+import Form from '../../../components/forms/Form';
+import AlertMessage, {ALERT_MSG_ERROR} from '../../../components/common/AlertMessage';
 
-export default class Account extends React.Component {
+class Category extends React.Component {
+
+  componentWillUnmount(){
+//    this.props.clear_form_account();
+  }
+
+  componentWillMount(){
+
+    // if (this.props.match.params.id){
+    //   this.props.fetch_account(this.props.match.params.id)
+    // }
+
+  }
+
+  onSubmit(values){
+
+    // if (this.props.match.params.id){
+    //   this.props.update_account(this.props.match.params.id, values)
+    // }else{
+    //   this.props.new_account(values)
+    // }  
+
+  }
+
   render() {
+
+    const { handleSubmit } = this.props;      
+
     return (
-         <div className="box box-primary">
 
-            <ActionButtonGroup>
-              <a className="btn btn-app"><i className="fa fa-mail-reply"></i> <Msg phrase="Cancel" /></a>
-              <a className="btn btn-app"><i className="fa fa-save"></i> <Msg phrase="Save" /> </a>
-            </ActionButtonGroup>
+      <div>
 
-            <div className="box-header with-border">
-              <h3 className="box-title"><Msg phrase="New Category" /></h3> 
-            </div>
+        <AlertMessage type={ALERT_MSG_ERROR} message={this.props.error} />
 
-            <form role="form">
+        <Form title="New Category" onSubmit={handleSubmit(this.onSubmit.bind(this))}>
+              <div className="col-lg-6">
 
-              <div className="box-body">
+                <Field 
+                  type="text"
+                  name="name"  
+                  component={Input}
+                  label="Category name"
+                  placeholder="Category name"
+                />
 
+              </div>  
+
+              <div className="col-lg-6">
                
-                <div className="row">
-
-                  <div className="col-lg-6">
-
-                    <div className="form-group">
-                      <label > <Msg phrase="Name" /></label>
-                      <input type="text" className="form-control" placeholder="Name" />
-                    </div>
-
-
-                  </div>  
-
-                  <div className="col-lg-6">
-
-                    <div className="form-group">
-                      <label > <Msg phrase="Description" /></label>
-                      <input type="text" className="form-control" placeholder="Description" />
-                    </div>
-
-                  </div>
-
-                </div>
+                <Field 
+                  type="text"
+                  name="description"
+                  component={Input}
+                  label="Description"
+                  placeholder="Description"
+                />
 
               </div>
 
-              <div className="box-footer">
-                <button className="btn btn-default" style={{marginRight: 5 }}><i className="fa fa-mail-reply"></i> <Msg phrase="Cancel" /></button>
-                <button type="submit" className="btn btn-primary"><i className="fa fa-save"></i> <Msg phrase="Save" /></button>
-              </div>
-            </form>
-        </div>
+        </Form>
 
-
+      </div>
     )
   }
 }
 
+function validate(values){
+
+  const errors={};
+
+  if (!values.name){
+    errors.name = "Please enter the account name";
+  }
+
+  return errors;
+}
+
+function mapStateToProps({category}){
+  return { error : category.error, enableReinitialize: true, initialValues: category.category };
+}
+
+Category = reduxForm({
+  validate,
+  form: 'category-form'
+})(Category)
+
+Category = connect(mapStateToProps, null)(Category);
+
+export default Category;

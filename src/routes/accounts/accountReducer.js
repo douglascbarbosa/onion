@@ -37,7 +37,7 @@ export default function accountReducer(state = INITIAL_STATE, action){
                 action.account
             ], msg: 'Account updated successfully', error: '', account : null}           
         case ACCOUNT_DELETE:
-            return {...state, msg : "Account deleted successfully", list: state.list.filter(e => e.id !== action.id), account : null}    
+            return {...state, list: state.list.filter(e => e.id !== action.id), account : null }; //FIXME: problem with the msg -> , msg : "Account deleted successfully"
         case ACCOUNT_FETCH_ALL:
             return {
                 ...state,

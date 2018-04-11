@@ -1,3 +1,28 @@
+.login-page{
+	background-image: 
+		linear-gradient(
+			to right bottom,
+			rgba(83, 78, 88, 0.8),
+			rgba(83, 78, 88, 0.8)),
+		url('../img/background-login.jpg');
+	background-size: cover;
+	background-position: top;
+}
+
+.login-logo a{ 
+	color: #fff 
+}
+
+.login-logo-main{
+	display: block;
+	font-weight: 700;
+}
+
+.login-logo-sub{
+	display: block;
+	font-size: 15px;
+}
+
 .positive-value {
 	color: #00a65a;
 }

@@ -86,7 +86,7 @@ class Accounts extends React.Component {
 }
 
 function mapStateToProps({account}){
-  return {...account}
+  return {list: account.list, msg : account.msg, error: account.error}
 }
 
 export default connect(mapStateToProps, {fetch_accounts, delete_account, clear_message})(Accounts);

@@ -63,7 +63,6 @@ export const update_account = (id, values) => {
         return database.ref(`/users/${getState().user.uid}/Accounts/${id}`)
             .update(account)
             .then(ref => {
-                console.log(ref);
                 dispatch({
                     type: ACCOUNT_UPDATE,
                     account : {
@@ -91,7 +90,8 @@ export const delete_account = (id) => {
 
         return database.ref(`/users/${getState().user.uid}/Accounts/${id}`)
             .remove()
-            .then(ref => {
+            .then(() => {
+
                 dispatch({
                     type: ACCOUNT_DELETE,
                     id

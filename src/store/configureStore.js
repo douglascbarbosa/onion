@@ -4,13 +4,15 @@ import { reducer as formReducer } from 'redux-form';
 import {routerReducer as routing} from 'react-router-redux'
 import {userReducer} from '../components/user'
 import {accountReducer} from '../routes/accounts'
+import {categoryReducer} from '../routes/category'
 
 export const rootReducer = combineReducers(
   {
     routing,
     user: userReducer,
     form: formReducer,
-    account : accountReducer
+    account : accountReducer,
+    category : categoryReducer
   }
 );
 
