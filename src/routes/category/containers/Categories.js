@@ -10,7 +10,7 @@ import {Link} from 'react-router-dom'
 import AlertMessage, {ALERT_MSG_ERROR, ALERT_MSG_SUCCESS} from '../../../components/common/AlertMessage';
 import Functions from '../../../components/utils/Functions';
 
-class Expenses extends React.Component {
+class Categories extends React.Component {
 
   componentWillMount(){
 //    this.props.fetch_accounts();
@@ -88,5 +88,5 @@ function mapStateToProps({category}){
   return {list: category.list, msg : category.msg, error: category.error}
 }
 
-export default connect(mapStateToProps, null)(Expenses);
+export default connect(mapStateToProps, null)(Categories);
 

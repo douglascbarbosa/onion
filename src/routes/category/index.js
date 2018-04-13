@@ -1,30 +1,16 @@
-import Expenses from './containers/Expenses';
-import Income from './containers/Income';
+import Categories from './containers/Categories';
 import Category from './containers/Category';
 import categoryReducer from './categoryReducer';
 
 export default {
 	menu_name: 'Categories',
 	icon: 'fa-tags',
+	title: 'Categories',
+	path: '/categories',
+	component: Categories,
+	public: false,
+	layout_name: 'layout',
 	child_routes:[
-		{
-			title: 'Expenses',
-			menu_name: 'Expenses',
-			icon: 'fa-tag',
-			path: '/expenses',
-			component: Expenses,
-			public: false,
-			layout_name: 'layout',
-		 },
-		{
-			title: 'Income',
-			menu_name: 'Income',
-			icon: 'fa-tag',
-			path: '/income',
-			component: Income,
-			public: false,
-			layout_name: 'layout',
-		 },
 		{
 			title: 'Category',
 			icon: 'fa-tag',
@@ -33,7 +19,6 @@ export default {
 			public: false,
 			layout_name: 'layout'
 		 }
-
 
 	]
 }

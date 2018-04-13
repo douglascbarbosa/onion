@@ -44,7 +44,7 @@ class Category extends React.Component {
         <AlertMessage type={ALERT_MSG_ERROR} message={this.props.error} />
 
         <Form title="New Category" onSubmit={handleSubmit(this.onSubmit.bind(this))}>
-              <div className="col-lg-6">
+              <div className="col-lg-12">
 
                 <Field 
                   type="text"
@@ -55,18 +55,6 @@ class Category extends React.Component {
                 />
 
               </div>  
-
-              <div className="col-lg-6">
-               
-                <Field 
-                  type="text"
-                  name="description"
-                  component={Input}
-                  label="Description"
-                  placeholder="Description"
-                />
-
-              </div>
 
         </Form>
 
@@ -80,7 +68,7 @@ function validate(values){
   const errors={};
 
   if (!values.name){
-    errors.name = "Please enter the account name";
+    errors.name = "Please enter the category name";
   }
 
   return errors;
