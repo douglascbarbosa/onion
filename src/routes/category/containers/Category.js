@@ -4,8 +4,8 @@ import { Field, reduxForm } from 'redux-form'
 import ActionButtonGroup from '../../../components/common/ActionButtonGroup'
 import Msg from '../../../components/i18n/Msg'
 //import CurrencyInput from 'react-currency-input'
-import {CurrencyInput, Input} from '../../../components/forms/inputs'
-//import { new_account, update_account, fetch_account, clear_form_account } from '../AccountActions';
+import {Input} from '../../../components/forms/inputs'
+import { new_category, update_category } from '../CategoryActions';
 import Form from '../../../components/forms/Form';
 import AlertMessage, {ALERT_MSG_ERROR} from '../../../components/common/AlertMessage';
 
@@ -25,11 +25,11 @@ class Category extends React.Component {
 
   onSubmit(values){
 
-    // if (this.props.match.params.id){
-    //   this.props.update_account(this.props.match.params.id, values)
-    // }else{
-    //   this.props.new_account(values)
-    // }  
+     if (this.props.match.params.id){
+       this.props.update_category(this.props.match.params.id, values)
+     }else{
+       this.props.new_category(values)
+     }  
 
   }
 
@@ -83,6 +83,6 @@ Category = reduxForm({
   form: 'category-form'
 })(Category)
 
-Category = connect(mapStateToProps, null)(Category);
+Category = connect(mapStateToProps, {new_category})(Category);
 
 export default Category;

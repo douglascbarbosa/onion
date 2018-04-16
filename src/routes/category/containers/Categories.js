@@ -5,7 +5,7 @@ import ActionButton from '../../../components/common/ActionButton'
 import history from '../../../routes/History'
 import {Redirect} from 'react-router-dom'
 import Msg from '../../../components/i18n/Msg'
-//import {fetch_accounts, delete_account, clear_message} from '../AccountActions'
+import {fetch_categories, delete_category} from '../CategoryActions'
 import {Link} from 'react-router-dom'
 import AlertMessage, {ALERT_MSG_ERROR, ALERT_MSG_SUCCESS} from '../../../components/common/AlertMessage';
 import Functions from '../../../components/utils/Functions';
@@ -13,17 +13,17 @@ import Functions from '../../../components/utils/Functions';
 class Categories extends React.Component {
 
   componentWillMount(){
-//    this.props.fetch_accounts();
+    this.props.fetch_categories();
   }
 
   handleNewClick(){
     //Redirect to account!
-    history.push('/category/expense'); 
+    history.push('/category'); 
   }
 
 
   handleDelete(id){
-//    this.props.delete_account(id);
+    this.props.delete_category(id);
   }
 
   onClearMsg(type){
@@ -39,19 +39,9 @@ class Categories extends React.Component {
     let options = {
       "data": this.props.list,
       "columns": [
-          {"data": "name"},
-          {"data": "initialValue"}
+          {"data": "name"}
       ],
-      "order": [[0, 'desc']],
-      "aoColumnDefs" : [{
-        "aTargets": [1],
-        "mData" : null,
-        "mRender" : function (data, type, full){
-          return Functions.floatToMoney(data);
-        }
-    
-      }]
-      
+      "order": [[0, 'desc']]
     }
 
     return (
@@ -67,11 +57,10 @@ class Categories extends React.Component {
                 <AlertMessage type={ALERT_MSG_ERROR} message={this.props.error} onClearMsg={this.onClearMsg.bind(this, ALERT_MSG_ERROR)} />
                 <AlertMessage type={ALERT_MSG_SUCCESS} message={this.props.msg} onClearMsg={this.onClearMsg.bind(this, ALERT_MSG_SUCCESS)} />
 
-                <DatatableList id="accountsList" options={options} formroute="edit/account" deleteevent={this.handleDelete.bind(this)}  >
+                <DatatableList id="categoriesList" options={options} formroute="edit/category" deleteevent={this.handleDelete.bind(this)}  >
                     <thead>
                         <tr>
                             <th><Msg phrase="Name" /></th>
-                            <th style={{width: 200, textAlign: 'rigth'}} ><Msg phrase="Value" /></th>
                             <th style={{width: 60}}><Msg phrase="Actions" /></th>
                         </tr>
                     </thead>
@@ -88,5 +77,5 @@ function mapStateToProps({category}){
   return {list: category.list, msg : category.msg, error: category.error}
 }
 
-export default connect(mapStateToProps, null)(Categories);
+export default connect(mapStateToProps, {fetch_categories, delete_category})(Categories);
 

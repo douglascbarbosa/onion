@@ -14,11 +14,20 @@ export default {
 		{
 			title: 'Category',
 			icon: 'fa-tag',
-			path: '/category/:type',
+			path: '/category',
 			component: Category,
 			public: false,
 			layout_name: 'layout'
-		 }
+		 },
+		 {
+			title: 'Category',
+			icon: 'fa-tag',
+			path: '/edit/category/:id',
+			component: Category,
+			public: false,
+			layout_name: 'layout'
+		}
+		 
 
 	]
 }

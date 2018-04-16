@@ -55,7 +55,7 @@ export default class DatatableList extends React.Component{
         }
 
         columnDefs.push({
-            "aTargets": [2],
+            "aTargets": [columnDefs.length + 1],
             "mData" : null,
             "mRender" : function (data, type, full){
               return self.getActionsButtons(full);
