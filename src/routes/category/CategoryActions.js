@@ -1,18 +1,23 @@
 import database from '../../firebase/firebase';
 import history from '../../routes/History';
+import Functions from '../../components/utils/Functions'
 
 export const CATEGORY_NEW         = 'CATEGORY_NEW';
 export const CATEGORY_UPDATE      = 'CATEGORY_UPDATE';
 export const CATEGORY_DELETE      = 'CATEGORY_DELETE';
 export const CATEGORY_FETCH_ALL   = 'CATEGORY_FETCH_ALL';
-export const CATEGORY_FETCH        = 'CATEGORY_FETCH';
-export const ACCOUNT_NOT_FOUND    = 'ACCOUNT_NOT_FOUND';
+export const CATEGORY_FETCH       = 'CATEGORY_FETCH';
+export const CATEGORY_NOT_FOUND   = 'CATEGORY_NOT_FOUND';
 export const CATEGORY_LIST_ERROR  = 'CATEGORY_LIST_ERROR';
 export const CATEGORY_FORM_ERROR  = 'CATEGORY_FORM_ERROR';
-export const ACCOUNT_FORM_CLEAR   = 'ACCOUNT_FORM_CLEAR';
+export const CATEGORY_FORM_CLEAR  = 'CATEGORY_FORM_CLEAR';
 export const CATEGORY_LAODING     = 'CATEGORY_LAODING';
-export const ACCOUNT_CLEAR_MSG    = 'ACCOUNT_MSG';
-export const ACCOUNT_CLEAR_ERROR  = 'ACCOUNT_ERROR';
+export const CATEGORY_CLEAR_MSG   = 'CATEGORY_CLEAR_MSG';
+export const CATEGORY_CLEAR_ERROR = 'CATEGORY_CLEAR_ERROR';
+
+
+
+const category_path = 'categories';
 
 export const new_category = ({name}) =>{
 
@@ -20,7 +25,7 @@ export const new_category = ({name}) =>{
 
         dispatch({type: CATEGORY_LAODING});
 
-        return database.ref(`/users/${getState().user.uid}/Category`)
+        return database.ref(`/users/${getState().user.uid}/${category_path}`)
             .push({name})
             .then(ref => {
                 dispatch({
@@ -54,7 +59,7 @@ export const update_category = (id, values) => {
             name : values.name,
         }
 
-        return database.ref(`/users/${getState().user.uid}/Category/${id}`)
+        return database.ref(`/users/${getState().user.uid}/${category_path}/${id}`)
             .update(category)
             .then(ref => {
                 dispatch({
@@ -82,7 +87,7 @@ export const delete_category = (id) => {
 
     return (dispatch, getState) => {
 
-        return database.ref(`/users/${getState().user.uid}/Category/${id}`)
+        return database.ref(`/users/${getState().user.uid}/${category_path}/${id}`)
             .remove()
             .then(() => {
 
@@ -106,7 +111,7 @@ export const delete_category = (id) => {
 
 export const fetch_categories = () => {
     return (dispatch, getState ) => {
-        return database.ref(`/users/${getState().user.uid}/Category`).once('value').then(snapshot => {
+        return database.ref(`/users/${getState().user.uid}/${category_path}`).once('value').then(snapshot => {
             const categories = [];    
 
             snapshot.forEach(childSnapshot => {
@@ -125,8 +130,8 @@ export const fetch_categories = () => {
 
 export const fetch_category = (id) => {
     return (dispatch, getState ) => {
-        return database.ref(`/users/${getState().user.uid}/Category/${id}`).once('value').then(snapshot => {
-            //Check if the account exist!
+        return database.ref(`/users/${getState().user.uid}/${category_path}/${id}`).once('value').then(snapshot => {
+            //Check if the category exist!
             if (snapshot.exists()){
                 const category = snapshot.val();
 
@@ -137,10 +142,10 @@ export const fetch_category = (id) => {
                  
             }else{
                 dispatch({
-                    type: ACCOUNT_NOT_FOUND
+                    type: CATEGORY_NOT_FOUND
                 });
 
-                //If the account doesn't exist, I'll redirect to the list!
+                //If the category doesn't exist, I'll redirect to the list!
                 history.push('/categories');
                 
             }
@@ -152,33 +157,32 @@ export const fetch_category = (id) => {
                 error : error.message
             })
 
-            //If the account doesn't exist, I'll redirect to the list!
-            history.push('/accounts');
+            //If the category doesn't exist, I'll redirect to the list!
+            history.push('/categories');
             
         });
     }
 }
 
-// export const clear_form_account = () => {
-//     return (dispatch) => {
-//         dispatch({type: ACCOUNT_FORM_CLEAR})
-//     }
+export const clear_form_category = () => {
+    return (dispatch) => {
+        dispatch({type: CATEGORY_FORM_CLEAR})
+    }
 
-// }
+}
 
-// export const clear_message = (type) => {
-//     return dispatch => {
-//         console.log('limpando erro', type);
+export const clear_message = (type) => {
+    return dispatch => {
 
-//         if (type === 'M'){
-//             dispatch({
-//                 type: ACCOUNT_CLEAR_MSG
-//             })
-//         }else{
-//             dispatch({
-//                 type: ACCOUNT_CLEAR_ERROR
-//             })
-//         }
+        if (type === 'M'){
+            dispatch({
+                type: CATEGORY_CLEAR_MSG
+            })
+        }else{
+            dispatch({
+                type: CATEGORY_CLEAR_ERROR
+            })
+        }
 
-//     }
-// }
+    }
+}

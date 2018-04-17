@@ -5,7 +5,7 @@ import ActionButton from '../../../components/common/ActionButton'
 import history from '../../../routes/History'
 import {Redirect} from 'react-router-dom'
 import Msg from '../../../components/i18n/Msg'
-import {fetch_categories, delete_category} from '../CategoryActions'
+import {fetch_categories, delete_category, clear_message} from '../CategoryActions'
 import {Link} from 'react-router-dom'
 import AlertMessage, {ALERT_MSG_ERROR, ALERT_MSG_SUCCESS} from '../../../components/common/AlertMessage';
 import Functions from '../../../components/utils/Functions';
@@ -77,5 +77,5 @@ function mapStateToProps({category}){
   return {list: category.list, msg : category.msg, error: category.error}
 }
 
-export default connect(mapStateToProps, {fetch_categories, delete_category})(Categories);
+export default connect(mapStateToProps, {fetch_categories, delete_category, clear_message})(Categories);
 
