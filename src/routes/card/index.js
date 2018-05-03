@@ -1,5 +1,6 @@
 import Cards from './containers/Cards';
 import Card from './containers/Card';
+import cardReducer from './cardReducer';
 
 export default {
 	title: 'Credit cards',
@@ -20,3 +21,7 @@ export default {
 		}
 	]
 }
+
+export {cardReducer}
+
+export * from './CardActions'

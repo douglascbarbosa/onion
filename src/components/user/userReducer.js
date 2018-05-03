@@ -12,7 +12,7 @@ const INITIAL_STATE = {
   email: '',
   uid : '',
   username: '',
-	error: '',
+  error: '',
 	loading: false
 };
 

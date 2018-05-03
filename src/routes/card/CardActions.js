@@ -14,7 +14,7 @@ export const CARD_LAODING     = 'CARD_LAODING';
 export const CARD_CLEAR_MSG   = 'ACCOUNT_MSG';
 export const CARD_CLEAR_ERROR = 'ACCOUNT_ERROR';
 
-const card_path = `${getUserPath()}/cards`;
+const card_path = `cards`;
 
 export const new_card = (values) =>{
 
@@ -24,13 +24,12 @@ export const new_card = (values) =>{
 
         const card = {
             name : values.name,
-            closing_day : value.closing_day,
-            payment_day : value.payment_day,
-            account_id : value.account_id,
+            closing_day : values.closing_day,
+            payment_day : values.payment_day,
             limit : parseFloat(values.limit.replace('.', '').replace(',','.')).toFixed(2)
         }
 
-        return database.ref(card_path)
+        return database.ref(`/users/${getState().user.uid}/${card_path}`)
             .push(card)
             .then(ref => {
                 dispatch({
@@ -62,13 +61,12 @@ export const update_card = (id, values) => {
         
         const card = {
             name : values.name,
-            closing_day : value.closing_day,
-            payment_day : value.payment_day,
-            account_id : value.account_id,
+            closing_day : values.closing_day,
+            payment_day : values.payment_day,
             limit : parseFloat(values.limit.replace('.', '').replace(',','.')).toFixed(2)
         }
 
-        return database.ref(`${card_path}/${id}`)
+        return database.ref(`/users/${getState().user.uid}/${card_path}/${id}`)
             .update(card)
             .then(ref => {
                 dispatch({
@@ -96,7 +94,7 @@ export const delete_card = (id) => {
 
     return (dispatch, getState) => {
 
-        return database.ref(`${card_path}/${id}`)
+        return database.ref(`/users/${getState().user.uid}/${card_path}/${id}`)
             .remove()
             .then(() => {
 
@@ -120,18 +118,18 @@ export const delete_card = (id) => {
 
 export const fetch_cards = () => {
     return (dispatch, getState ) => {
-        return database.ref(card_path).once('value').then(snapshot => {
-            const accounts = [];    
+        return database.ref(`/users/${getState().user.uid}/${card_path}`).once('value').then(snapshot => {
+            const cards = [];    
 
             snapshot.forEach(childSnapshot => {
-                accounts.push({
+                cards.push({
                     id: childSnapshot.key,
                     ...childSnapshot.val()
                 });
             });
           dispatch({
               type: CARD_FETCH_ALL,
-              accounts
+              cards
           })  
         });
     }
@@ -139,7 +137,7 @@ export const fetch_cards = () => {
 
 export const fetch_card = (id) => {
     return (dispatch, getState ) => {
-        return database.ref(`${card_path}/${id}`).once('value').then(snapshot => {
+        return database.ref(`/users/${getState().user.uid}/${card_path}/${id}`).once('value').then(snapshot => {
             //Check if the account exist!
             if (snapshot.exists()){
                 const card = snapshot.val();

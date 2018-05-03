@@ -1,6 +1,5 @@
 import database from '../../firebase/firebase';
 import history from '../../routes/History';
-import Functions from '../../components/utils/Functions'
 
 export const CATEGORY_NEW         = 'CATEGORY_NEW';
 export const CATEGORY_UPDATE      = 'CATEGORY_UPDATE';
@@ -14,8 +13,6 @@ export const CATEGORY_FORM_CLEAR  = 'CATEGORY_FORM_CLEAR';
 export const CATEGORY_LAODING     = 'CATEGORY_LAODING';
 export const CATEGORY_CLEAR_MSG   = 'CATEGORY_CLEAR_MSG';
 export const CATEGORY_CLEAR_ERROR = 'CATEGORY_CLEAR_ERROR';
-
-
 
 const category_path = 'categories';
 

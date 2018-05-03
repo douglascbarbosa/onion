@@ -5,6 +5,7 @@ import {routerReducer as routing} from 'react-router-redux'
 import {userReducer} from '../components/user'
 import {accountReducer} from '../routes/accounts'
 import {categoryReducer} from '../routes/category'
+import {cardReducer} from '../routes/card'
 
 export const rootReducer = combineReducers(
   {
@@ -12,7 +13,8 @@ export const rootReducer = combineReducers(
     user: userReducer,
     form: formReducer,
     account : accountReducer,
-    category : categoryReducer
+    category : categoryReducer,
+    card : cardReducer 
   }
 );
 

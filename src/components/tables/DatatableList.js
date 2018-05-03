@@ -53,9 +53,10 @@ export default class DatatableList extends React.Component{
         if (this.props.options.aoColumnDefs){
             columnDefs = [...this.props.options.aoColumnDefs] 
         }
+        const qtdColumns = this.props.options.columns.length;
 
         columnDefs.push({
-            "aTargets": [columnDefs.length + 1],
+            "aTargets": [qtdColumns],
             "mData" : null,
             "mRender" : function (data, type, full){
               return self.getActionsButtons(full);
